@@ -1,0 +1,926 @@
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --primary: #5146e5;
+    --primary-dark: #4038b8;
+
+    --background: #f6f7fb;
+
+    --surface: #ffffff;
+
+    --text: #171725;
+
+    --muted: #71717f;
+
+    --border: #e7e7ef;
+
+    --success: #16834d;
+
+    --danger: #c43d3d;
+
+    --sidebar: #11111a;
+
+}
+
+
+body {
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+
+/* ========================================
+   LOGIN
+======================================== */
+
+.login-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 24px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #e9e7ff,
+            transparent 40%
+        ),
+        var(--background);
+
+}
+
+
+.login-container {
+
+    width: 100%;
+
+    max-width: 460px;
+
+}
+
+
+.login-card {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 42px;
+
+    box-shadow:
+        0 20px 60px rgba(20, 20, 50, 0.08);
+
+}
+
+
+.login-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 45px;
+
+}
+
+
+.brand-mark {
+
+    width: 46px;
+
+    height: 46px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: var(--primary);
+
+    color: white;
+
+    border-radius: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+
+.login-brand h1 {
+
+    font-size: 16px;
+
+}
+
+
+.login-brand p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 3px;
+
+}
+
+
+.login-heading {
+
+    margin-bottom: 28px;
+
+}
+
+
+.eyebrow {
+
+    display: block;
+
+    color: var(--primary);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+
+}
+
+
+.login-heading h2 {
+
+    font-size: 32px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.login-heading p {
+
+    color: var(--muted);
+
+    line-height: 1.6;
+
+}
+
+
+.form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+
+}
+
+
+.form-group input:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(81, 70, 229, 0.1);
+
+}
+
+
+.login-button {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.login-button:hover {
+
+    background: var(--primary-dark);
+
+}
+
+
+.login-button:disabled {
+
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+}
+
+
+.login-message {
+
+    margin-top: 16px;
+
+    color: var(--danger);
+
+    font-size: 13px;
+
+}
+
+
+/* ========================================
+   CRM LAYOUT
+======================================== */
+
+.crm-layout {
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+.sidebar {
+
+    width: 250px;
+
+    background: var(--sidebar);
+
+    color: white;
+
+    min-height: 100vh;
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    bottom: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.sidebar-brand {
+
+    padding: 28px 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+}
+
+
+.sidebar-brand h2 {
+
+    font-size: 14px;
+
+}
+
+
+.sidebar-brand span {
+
+    display: block;
+
+    color: #9b9ba7;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+
+}
+
+
+.sidebar-nav {
+
+    padding: 25px 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.nav-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 13px;
+
+    color: #aaaab6;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+
+}
+
+
+.nav-link:hover,
+.nav-link.active {
+
+    color: white;
+
+    background: rgba(255,255,255,0.08);
+
+}
+
+
+.nav-link.active {
+
+    background: var(--primary);
+
+}
+
+
+.nav-link span {
+
+    width: 20px;
+
+    text-align: center;
+
+}
+
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    padding: 20px 14px;
+
+}
+
+
+.sidebar-bottom button {
+
+    width: 100%;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    background: transparent;
+
+    color: #aaaab6;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+.main-content {
+
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+
+    padding: 38px;
+
+}
+
+
+/* ========================================
+   DASHBOARD HEADER
+======================================== */
+
+.dashboard-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.dashboard-header h1 {
+
+    font-size: 32px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.dashboard-header p {
+
+    color: var(--muted);
+
+}
+
+
+.primary-button,
+.secondary-button {
+
+    border: none;
+
+    padding: 11px 17px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+}
+
+
+.primary-button {
+
+    background: var(--primary);
+
+    color: white;
+
+}
+
+
+.secondary-button {
+
+    background: #f1f1f6;
+
+    color: var(--text);
+
+}
+
+
+/* ========================================
+   METRICS
+======================================== */
+
+.metrics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.metric-card {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+}
+
+
+.metric-label {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+
+}
+
+
+.metric-card strong {
+
+    display: block;
+
+    font-size: 24px;
+
+    letter-spacing: -0.5px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.metric-card small {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+/* ========================================
+   DASHBOARD GRID
+======================================== */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
+    gap: 22px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.dashboard-card {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+}
+
+
+.card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+
+}
+
+
+.card-header h2 {
+
+    font-size: 18px;
+
+    letter-spacing: -0.4px;
+
+}
+
+
+.pipeline-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.pipeline-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 13px;
+
+}
+
+
+.pipeline-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.pipeline-row span {
+
+    color: var(--muted);
+
+}
+
+
+.pipeline-row strong {
+
+    background: #f2f1ff;
+
+    color: var(--primary);
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.empty-state {
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+}
+
+
+.empty-state strong {
+
+    display: block;
+
+    color: var(--text);
+
+    margin-bottom: 5px;
+
+}
+
+
+.empty-state p {
+
+    font-size: 13px;
+
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+th {
+
+    text-align: left;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    padding: 12px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+td {
+
+    padding: 15px 12px;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .metrics-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .sidebar {
+
+        width: 210px;
+
+    }
+
+    .main-content {
+
+        width: calc(100% - 210px);
+
+        margin-left: 210px;
+
+        padding: 25px;
+
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+
+        position: static;
+
+        width: 100%;
+
+        min-height: auto;
+
+    }
+
+    .crm-layout {
+
+        display: block;
+
+    }
+
+    .sidebar-nav {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .sidebar-bottom {
+
+        display: none;
+
+    }
+
+    .main-content {
+
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 20px;
+
+    }
+
+    .dashboard-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+
+    }
+
+    .metrics-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .login-card {
+
+        padding: 28px 22px;
+
+    }
+
+}

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CRM Dashboard | Samuel Okokon</title>
+
+    <link rel="stylesheet" href="css/crm.css">
+
+</head>
+
+
+<body>
+
+<div class="crm-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>
+                    CRM
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="index.html"
+                class="nav-link active"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>◉</span>
+                Leads
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>▣</span>
+                Projects
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>◇</span>
+                Proposals
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>₦</span>
+                Payments
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    BUSINESS COMMAND CENTER
+                </span>
+
+                <h1>
+                    Good morning, Samuel.
+                </h1>
+
+                <p>
+                    Here's what needs your attention today.
+                </p>
+
+            </div>
+
+
+            <button
+                class="primary-button"
+                id="addLeadButton"
+            >
+                + Add Lead
+            </button>
+
+        </header>
+
+
+
+        <!-- =====================================
+             METRICS
+        ====================================== -->
+
+        <section class="metrics-grid">
+
+
+            <div class="metric-card">
+
+                <span class="metric-label">
+                    Pipeline Value
+                </span>
+
+                <strong id="pipelineValue">
+                    ₦0
+                </strong>
+
+                <small>
+                    Active opportunities
+                </small>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span class="metric-label">
+                    Proposals Sent
+                </span>
+
+                <strong id="proposalsSent">
+                    0
+                </strong>
+
+                <small>
+                    Active proposals
+                </small>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span class="metric-label">
+                    Won
+                </span>
+
+                <strong id="wonCount">
+                    0
+                </strong>
+
+                <small>
+                    Closed deals
+                </small>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span class="metric-label">
+                    Collected
+                </span>
+
+                <strong id="collectedValue">
+                    ₦0
+                </strong>
+
+                <small>
+                    CRM revenue
+                </small>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span class="metric-label">
+                    Conversion Rate
+                </span>
+
+                <strong id="conversionRate">
+                    0%
+                </strong>
+
+                <small>
+                    Lead → Won
+                </small>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ATTENTION + PIPELINE
+        ====================================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- ATTENTION -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PRIORITY
+                        </span>
+
+                        <h2>
+                            What Needs Your Attention?
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div id="priorityTasks">
+
+                    <div class="empty-state">
+
+                        <strong>
+                            No urgent tasks
+                        </strong>
+
+                        <p>
+                            Your next actions will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PIPELINE -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            SALES PIPELINE
+                        </span>
+
+                        <h2>
+                            Lead Pipeline
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pipeline-list">
+
+                    <div class="pipeline-row">
+
+                        <span>
+                            New Lead
+                        </span>
+
+                        <strong id="newLeadCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="pipeline-row">
+
+                        <span>
+                            Qualified
+                        </span>
+
+                        <strong id="qualifiedCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="pipeline-row">
+
+                        <span>
+                            Discovery
+                        </span>
+
+                        <strong id="discoveryCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="pipeline-row">
+
+                        <span>
+                            Proposal
+                        </span>
+
+                        <strong id="proposalCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="pipeline-row">
+
+                        <span>
+                            Follow-Up
+                        </span>
+
+                        <strong id="followUpCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="pipeline-row">
+
+                        <span>
+                            Won
+                        </span>
+
+                        <strong id="pipelineWonCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             RECENT LEADS
+        ====================================== -->
+
+        <section class="dashboard-card recent-leads">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PROSPECTS
+                    </span>
+
+                    <h2>
+                        Recent Leads
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="secondary-button"
+                    id="viewLeadsButton"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Business
+                            </th>
+
+                            <th>
+                                Contact
+                            </th>
+
+                            <th>
+                                Stage
+                            </th>
+
+                            <th>
+                                Value
+                            </th>
+
+                            <th>
+                                Added
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recentLeadsBody">
+
+                        <tr>
+
+                            <td colspan="5">
+
+                                <div class="empty-state">
+
+                                    No leads yet.
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script type="module" src="js/dashboard.js"></script>
+
+</body>
+
+</html>

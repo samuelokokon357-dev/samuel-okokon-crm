@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CRM Login | Samuel Okokon</title>
+
+    <link rel="stylesheet" href="css/crm.css">
+</head>
+
+<body class="login-page">
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <div class="login-brand">
+
+                <div class="brand-mark">
+                    SO
+                </div>
+
+                <div>
+                    <h1>Samuel Okokon</h1>
+                    <p>Client Relationship Management</p>
+                </div>
+
+            </div>
+
+
+            <div class="login-heading">
+
+                <span class="eyebrow">
+                    PRIVATE CRM
+                </span>
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Sign in to manage your leads, projects,
+                    proposals and clients.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+                    Sign In
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="login-message"
+                ></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script type="module">
+
+        import { supabase } from "./js/supabase.js";
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const loginMessage =
+            document.getElementById("loginMessage");
+
+
+        loginForm.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent = "Signing In...";
+
+            loginMessage.textContent = "";
+
+
+            const { error } =
+                await supabase.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+
+            if (error) {
+
+                loginMessage.textContent =
+                    error.message;
+
+                loginButton.disabled = false;
+
+                loginButton.textContent = "Sign In";
+
+                return;
+            }
+
+
+            window.location.href = "index.html";
+
+        });
+
+    </script>
+
+</body>
+</html>
