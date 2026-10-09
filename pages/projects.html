@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Projects | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="crm-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>CRM</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="leads.html"
+                class="nav-link"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+
+            <a
+                href="projects.html"
+                class="nav-link active"
+            >
+                <span>▣</span>
+                Projects
+            </a>
+
+
+         <a
+    href="proposals.html"
+    class="nav-link"
+>
+    <span>◇</span>
+    Proposals
+</a>
+
+
+            <a
+    href="payments.html"
+    class="nav-link"
+>
+    <span>₦</span>
+    Payments
+</a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    PROJECT MANAGEMENT
+                </span>
+
+                <h1>
+                    Projects
+                </h1>
+
+                <p>
+                    Turn opportunities into structured client projects.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="addProjectButton"
+            >
+                + Add Project
+            </button>
+
+        </header>
+
+
+
+        <!-- =====================================
+             PROJECT TOOLBAR
+        ====================================== -->
+
+        <section class="dashboard-card project-toolbar">
+
+            <input
+                type="search"
+                id="projectSearchInput"
+                placeholder="Search projects, schools or businesses..."
+            >
+
+
+            <select id="projectStatusFilter">
+
+                <option value="ALL">
+                    All Statuses
+                </option>
+
+                <option value="PLANNING">
+                    Planning
+                </option>
+
+                <option value="IN_PROGRESS">
+                    In Progress
+                </option>
+
+                <option value="REVIEW">
+                    Review
+                </option>
+
+                <option value="LAUNCHED">
+                    Launched
+                </option>
+
+                <option value="ON_HOLD">
+                    On Hold
+                </option>
+
+                <option value="COMPLETED">
+                    Completed
+                </option>
+
+                <option value="CANCELLED">
+                    Cancelled
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROJECT LIST
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        DELIVERY PIPELINE
+                    </span>
+
+                    <h2>
+                        All Projects
+                    </h2>
+
+                </div>
+
+
+                <span id="projectCount">
+                    0 projects
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Project</th>
+
+                            <th>Client / Lead</th>
+
+                            <th>Service</th>
+
+                            <th>Status</th>
+
+                            <th>Value</th>
+
+                            <th>Expected Launch</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="projectsTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================
+     ADD PROJECT MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="projectModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    NEW PROJECT
+                </span>
+
+                <h2>
+                    Add Project
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeProjectModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <form id="projectForm">
+
+
+            <!-- =================================
+                 PROJECT INFORMATION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Project Information
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full-width">
+
+                        <label for="projectLead">
+                            Lead / Client *
+                        </label>
+
+
+                        <select
+                            id="projectLead"
+                            required
+                        >
+
+                            <option value="">
+                                Select lead
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="projectName">
+                            Project Name *
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="projectName"
+                            required
+                            placeholder="e.g. Royal Heritage Academy Website"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="serviceType">
+                            Service Type
+                        </label>
+
+
+                        <select id="serviceType">
+
+                            <option value="">
+                                Select service
+                            </option>
+
+                            <option value="SINGLE_PAGE_WEBSITE">
+                                Single-Page Website
+                            </option>
+
+                            <option value="MULTI_PAGE_WEBSITE">
+                                Multi-Page Website
+                            </option>
+
+                            <option value="COMMERCIAL_WEBSITE">
+                                Commercial Website
+                            </option>
+
+                            <option value="E_COMMERCE">
+                                E-Commerce
+                            </option>
+
+                            <option value="SCHOOL_WEBSITE">
+                                School Website
+                            </option>
+
+                            <option value="WEBSITE_REDESIGN">
+                                Website Redesign
+                            </option>
+
+                            <option value="OTHER">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="projectStatus">
+                            Project Status
+                        </label>
+
+
+                        <select id="projectStatus">
+
+                            <option value="PLANNING">
+                                Planning
+                            </option>
+
+                            <option value="IN_PROGRESS">
+                                In Progress
+                            </option>
+
+                            <option value="REVIEW">
+                                Review
+                            </option>
+
+                            <option value="LAUNCHED">
+                                Launched
+                            </option>
+
+                            <option value="ON_HOLD">
+                                On Hold
+                            </option>
+
+                            <option value="COMPLETED">
+                                Completed
+                            </option>
+
+                            <option value="CANCELLED">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="projectValue">
+                            Estimated Value (₦)
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="projectValue"
+                            min="0"
+                            step="1000"
+                            placeholder="1400000"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full-width">
+
+                        <label for="projectDescription">
+                            Project Description
+                        </label>
+
+
+                        <textarea
+                            id="projectDescription"
+                            rows="4"
+                            placeholder="What are we building for this client?"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 TIMELINE
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Timeline
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="projectStartDate">
+                            Start Date
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="projectStartDate"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="projectLaunchDate">
+                            Expected Launch Date
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="projectLaunchDate"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <p
+                id="projectFormMessage"
+                class="form-message"
+            ></p>
+
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelProjectButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveProjectButton"
+                >
+                    Save Project
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script
+    type="module"
+    src="../js/projects.js"
+></script>
+
+</body>
+
+</html>

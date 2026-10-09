@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Proposals | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="crm-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>CRM</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="leads.html"
+                class="nav-link"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+
+            <a
+                href="projects.html"
+                class="nav-link"
+            >
+                <span>▣</span>
+                Projects
+            </a>
+
+
+            <a
+                href="proposals.html"
+                class="nav-link active"
+            >
+                <span>◇</span>
+                Proposals
+            </a>
+
+
+            <a
+    href="payments.html"
+    class="nav-link"
+>
+    <span>₦</span>
+    Payments
+</a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    SALES DOCUMENTS
+                </span>
+
+                <h1>
+                    Proposals
+                </h1>
+
+                <p>
+                    Create, track and manage every commercial offer.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="addProposalButton"
+            >
+                + Create Proposal
+            </button>
+
+        </header>
+
+
+
+        <!-- =====================================
+             TOOLBAR
+        ====================================== -->
+
+        <section class="dashboard-card proposal-toolbar">
+
+            <input
+                type="search"
+                id="proposalSearchInput"
+                placeholder="Search proposals, projects or clients..."
+            >
+
+
+            <select id="proposalStatusFilter">
+
+                <option value="ALL">
+                    All Statuses
+                </option>
+
+                <option value="DRAFT">
+                    Draft
+                </option>
+
+                <option value="SENT">
+                    Sent
+                </option>
+
+                <option value="VIEWED">
+                    Viewed
+                </option>
+
+                <option value="ACCEPTED">
+                    Accepted
+                </option>
+
+                <option value="REJECTED">
+                    Rejected
+                </option>
+
+                <option value="EXPIRED">
+                    Expired
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SUMMARY CARDS
+        ====================================== -->
+
+        <section class="proposal-summary-grid">
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    TOTAL
+                </span>
+
+                <h2 id="totalProposalCount">
+                    0
+                </h2>
+
+                <p>
+                    Proposals
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    SENT
+                </span>
+
+                <h2 id="sentProposalCount">
+                    0
+                </h2>
+
+                <p>
+                    Awaiting response
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    ACCEPTED
+                </span>
+
+                <h2 id="acceptedProposalCount">
+                    0
+                </h2>
+
+                <p>
+                    Won proposals
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    VALUE
+                </span>
+
+                <h2 id="acceptedProposalValue">
+                    ₦0
+                </h2>
+
+                <p>
+                    Accepted value
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROPOSAL TABLE
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        COMMERCIAL PIPELINE
+                    </span>
+
+                    <h2>
+                        All Proposals
+                    </h2>
+
+                </div>
+
+
+                <span id="proposalCount">
+                    0 proposals
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Proposal</th>
+
+                            <th>Client / Project</th>
+
+                            <th>Amount</th>
+
+                            <th>Status</th>
+
+                            <th>Valid Until</th>
+
+                            <th>Created</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="proposalsTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================
+     CREATE PROPOSAL MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="proposalModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    COMMERCIAL OFFER
+                </span>
+
+                <h2>
+                    Create Proposal
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeProposalModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <form id="proposalForm">
+
+
+            <!-- =================================
+                 CONNECTION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Project Connection
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full-width">
+
+                        <label for="proposalProject">
+                            Project *
+                        </label>
+
+
+                        <select
+                            id="proposalProject"
+                            required
+                        >
+
+                            <option value="">
+                                Select project
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 PROPOSAL INFORMATION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Proposal Information
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full-width">
+
+                        <label for="proposalTitle">
+                            Proposal Title *
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="proposalTitle"
+                            required
+                            placeholder="e.g. Royal Heritage Academy Website Proposal"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="proposalAmount">
+                            Amount *
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="proposalAmount"
+                            min="0"
+                            step="1000"
+                            required
+                            placeholder="1400000"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="proposalCurrency">
+                            Currency
+                        </label>
+
+
+                        <select id="proposalCurrency">
+
+                            <option value="NGN">
+                                NGN — Nigerian Naira
+                            </option>
+
+                            <option value="USD">
+                                USD — US Dollar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="proposalStatus">
+                            Status
+                        </label>
+
+
+                        <select id="proposalStatus">
+
+                            <option value="DRAFT">
+                                Draft
+                            </option>
+
+                            <option value="SENT">
+                                Sent
+                            </option>
+
+                            <option value="VIEWED">
+                                Viewed
+                            </option>
+
+                            <option value="ACCEPTED">
+                                Accepted
+                            </option>
+
+                            <option value="REJECTED">
+                                Rejected
+                            </option>
+
+                            <option value="EXPIRED">
+                                Expired
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="proposalValidUntil">
+                            Valid Until
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="proposalValidUntil"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full-width">
+
+                        <label for="proposalDescription">
+                            Description
+                        </label>
+
+
+                        <textarea
+                            id="proposalDescription"
+                            rows="5"
+                            placeholder="Describe the scope, deliverables and value of the proposal..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <div class="form-group full-width">
+
+                        <label for="proposalNotes">
+                            Internal Notes
+                        </label>
+
+
+                        <textarea
+                            id="proposalNotes"
+                            rows="3"
+                            placeholder="Internal sales notes..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <p
+                id="proposalFormMessage"
+                class="form-message"
+            ></p>
+
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelProposalButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveProposalButton"
+                >
+                    Save Proposal
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script
+    type="module"
+    src="../js/proposals.js"
+></script>
+
+</body>
+
+</html>

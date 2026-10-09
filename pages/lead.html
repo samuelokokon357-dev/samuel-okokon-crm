@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lead Profile | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="crm-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>CRM</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="leads.html"
+                class="nav-link active"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+
+           <a
+    href="projects.html"
+    class="nav-link"
+>
+    <span>▣</span>
+    Projects
+</a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>◇</span>
+                Proposals
+            </a>
+
+
+          <a
+    href="payments.html"
+    class="nav-link"
+>
+    <span>₦</span>
+    Payments
+</a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- BACK -->
+
+        <a
+            href="leads.html"
+            class="back-link"
+        >
+            ← Back to Leads
+        </a>
+
+
+
+        <!-- PROFILE HEADER -->
+
+        <header class="lead-profile-header">
+
+            <div class="lead-profile-title">
+
+                <span class="eyebrow">
+                    LEAD PROFILE
+                </span>
+
+                <h1 id="businessName">
+                    Loading...
+                </h1>
+
+                <p id="contactName">
+                    Loading contact...
+                </p>
+
+            </div>
+
+
+            <div class="lead-profile-actions">
+
+                <button
+                    class="secondary-button"
+                    id="editLeadButton"
+                    type="button"
+                >
+                    Edit Lead
+                </button>
+
+
+                <button
+                    class="primary-button"
+                    id="changeStageButton"
+                    type="button"
+                >
+                    Change Stage
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             PROFILE GRID
+        ====================================== -->
+
+        <section class="profile-grid">
+
+
+            <!-- CONTACT INFORMATION -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            CONTACT
+                        </span>
+
+                        <h2>
+                            Contact Information
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-list">
+
+                    <div class="detail-row">
+
+                        <span>
+                            Name
+                        </span>
+
+                        <strong id="detailContactName">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong id="detailEmail">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Phone
+                        </span>
+
+                        <strong id="detailPhone">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            WhatsApp
+                        </span>
+
+                        <strong id="detailWhatsapp">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Website
+                        </span>
+
+                        <strong id="detailWebsite">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- OPPORTUNITY -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            SALES
+                        </span>
+
+                        <h2>
+                            Opportunity
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-list">
+
+                    <div class="detail-row">
+
+                        <span>
+                            Pipeline Stage
+                        </span>
+
+                        <strong>
+
+                            <span
+                                id="detailStage"
+                                class="stage-badge"
+                            >
+                                —
+                            </span>
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Estimated Value
+                        </span>
+
+                        <strong id="detailValue">
+                            ₦0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Lead Source
+                        </span>
+
+                        <strong id="detailSource">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Source Details
+                        </span>
+
+                        <strong id="detailSourceDetails">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Added
+                        </span>
+
+                        <strong id="detailCreated">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Next Follow-Up
+                        </span>
+
+                        <strong id="detailNextFollowUp">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUSINESS INFORMATION -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            BUSINESS
+                        </span>
+
+                        <h2>
+                            Business Information
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-list">
+
+                    <div class="detail-row">
+
+                        <span>
+                            Business / School
+                        </span>
+
+                        <strong id="detailBusinessName">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Business Type
+                        </span>
+
+                        <strong id="detailBusinessType">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NOTES -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            NOTES
+                        </span>
+
+                        <h2>
+                            Prospect Notes
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="notesContent"
+                    class="notes-content"
+                >
+                    No notes have been added for this prospect.
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             STAGE HISTORY
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ACTIVITY
+                    </span>
+
+                    <h2>
+                        Stage History
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="stageHistory"
+                class="stage-history"
+            >
+
+                <div class="empty-state">
+
+                    <p>
+                        Loading stage history...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ACTIVITIES
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        SALES ACTIVITY
+                    </span>
+
+                    <h2>
+                        Activity Timeline
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="addActivityButton"
+                >
+                    + Log Activity
+                </button>
+
+            </div>
+
+
+            <div
+                id="activityTimeline"
+                class="activity-timeline"
+            >
+
+                <div class="empty-state">
+
+                    <p>
+                        Loading activities...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             TASKS & FOLLOW-UPS
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        NEXT ACTIONS
+                    </span>
+
+                    <h2>
+                        Tasks & Follow-Ups
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="addTaskButton"
+                >
+                    + Add Task
+                </button>
+
+            </div>
+
+
+            <div
+                id="taskList"
+                class="task-list"
+            >
+
+                <div class="empty-state">
+
+                    <p>
+                        Loading tasks...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================
+     LOG ACTIVITY MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="activityModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    SALES ACTIVITY
+                </span>
+
+                <h2>
+                    Log Activity
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeActivityModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div class="form-section">
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label for="activityType">
+                        Activity Type
+                    </label>
+
+
+                    <select id="activityType">
+
+                        <option value="CALL">
+                            Phone Call
+                        </option>
+
+                        <option value="WHATSAPP">
+                            WhatsApp
+                        </option>
+
+                        <option value="EMAIL">
+                            Email
+                        </option>
+
+                        <option value="MEETING">
+                            Meeting
+                        </option>
+
+                        <option value="NOTE">
+                            Note
+                        </option>
+
+                        <option value="FOLLOW_UP">
+                            Follow-Up
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="activityDirection">
+                        Direction
+                    </label>
+
+
+                    <select id="activityDirection">
+
+                        <option value="OUTBOUND">
+                            Outbound
+                        </option>
+
+                        <option value="INBOUND">
+                            Inbound
+                        </option>
+
+                        <option value="INTERNAL">
+                            Internal
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group full-width">
+
+                    <label for="activitySubject">
+                        Subject
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="activitySubject"
+                        placeholder="e.g. Initial website consultation call"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group full-width">
+
+                    <label for="activityDescription">
+                        Description
+                    </label>
+
+
+                    <textarea
+                        id="activityDescription"
+                        rows="5"
+                        placeholder="What happened during this interaction?"
+                    ></textarea>
+
+                </div>
+
+
+
+                <div class="form-group full-width">
+
+                    <label for="activityDate">
+                        Activity Date & Time
+                    </label>
+
+
+                    <input
+                        type="datetime-local"
+                        id="activityDate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="activityMessage"
+                class="form-message"
+            ></p>
+
+        </div>
+
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="cancelActivityButton"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="saveActivityButton"
+            >
+                Save Activity
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================
+     ADD TASK MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="taskModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    NEXT ACTION
+                </span>
+
+                <h2>
+                    Add Task
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeTaskModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div class="form-section">
+
+            <div class="form-grid">
+
+
+                <div class="form-group full-width">
+
+                    <label for="taskTitle">
+                        Task
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="taskTitle"
+                        placeholder="e.g. Call Abraham about website proposal"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="taskPriority">
+                        Priority
+                    </label>
+
+
+                    <select id="taskPriority">
+
+                        <option value="HIGH">
+                            High
+                        </option>
+
+                        <option
+                            value="MEDIUM"
+                            selected
+                        >
+                            Medium
+                        </option>
+
+                        <option value="LOW">
+                            Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="taskDueAt">
+                        Due Date & Time
+                    </label>
+
+
+                    <input
+                        type="datetime-local"
+                        id="taskDueAt"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group full-width">
+
+                    <label for="taskDescription">
+                        Description
+                    </label>
+
+
+                    <textarea
+                        id="taskDescription"
+                        rows="4"
+                        placeholder="What exactly needs to be done?"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="taskMessage"
+                class="form-message"
+            ></p>
+
+        </div>
+
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="cancelTaskButton"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="saveTaskButton"
+            >
+                Save Task
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================
+     CHANGE STAGE MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="stageModal"
+>
+
+    <div class="modal-card stage-modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    PIPELINE
+                </span>
+
+                <h2>
+                    Change Stage
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeStageModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div class="form-section">
+
+
+            <div class="form-group">
+
+                <label for="newStage">
+                    New Pipeline Stage
+                </label>
+
+
+                <select id="newStage">
+
+                    <option value="NEW_LEAD">
+                        New Lead
+                    </option>
+
+                    <option value="QUALIFIED">
+                        Qualified
+                    </option>
+
+                    <option value="DISCOVERY">
+                        Discovery
+                    </option>
+
+                    <option value="PROPOSAL">
+                        Proposal
+                    </option>
+
+                    <option value="FOLLOW_UP">
+                        Follow-Up
+                    </option>
+
+                    <option value="WON">
+                        Won
+                    </option>
+
+                    <option value="ONBOARDING">
+                        Onboarding
+                    </option>
+
+                    <option value="PRODUCTION">
+                        Production
+                    </option>
+
+                    <option value="LAUNCHED">
+                        Launched
+                    </option>
+
+                    <option value="CLIENT">
+                        Client
+                    </option>
+
+                    <option value="LOST">
+                        Lost
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="stageNote">
+                    Note
+                </label>
+
+
+                <textarea
+                    id="stageNote"
+                    rows="3"
+                    placeholder="Why is this lead moving to this stage?"
+                ></textarea>
+
+            </div>
+
+
+            <p
+                id="stageMessage"
+                class="form-message"
+            ></p>
+
+        </div>
+
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="cancelStageButton"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="saveStageButton"
+            >
+                Update Stage
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script
+    type="module"
+    src="../js/lead.js"
+></script>
+
+</body>
+
+</html>

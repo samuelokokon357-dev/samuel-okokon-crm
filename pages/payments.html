@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Payments | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="crm-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>CRM</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="leads.html"
+                class="nav-link"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+
+            <a
+                href="projects.html"
+                class="nav-link"
+            >
+                <span>▣</span>
+                Projects
+            </a>
+
+
+            <a
+                href="proposals.html"
+                class="nav-link"
+            >
+                <span>◇</span>
+                Proposals
+            </a>
+
+
+            <a
+                href="payments.html"
+                class="nav-link active"
+            >
+                <span>₦</span>
+                Payments
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    REVENUE MANAGEMENT
+                </span>
+
+                <h1>
+                    Payments
+                </h1>
+
+                <p>
+                    Track money received, pending payments and outstanding balances.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="addPaymentButton"
+            >
+                + Record Payment
+            </button>
+
+        </header>
+
+
+
+        <!-- =====================================
+             REVENUE OVERVIEW
+        ====================================== -->
+
+        <section class="payment-summary-grid">
+
+
+            <!-- TOTAL REVENUE -->
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    TOTAL REVENUE
+                </span>
+
+
+                <div class="money-stack">
+
+                    <strong id="totalRevenueNgn">
+                        ₦0
+                    </strong>
+
+
+                    <span id="totalRevenueUsd">
+                        $0
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Money successfully received
+                </p>
+
+            </div>
+
+
+
+            <!-- PENDING -->
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    PENDING
+                </span>
+
+
+                <div class="money-stack">
+
+                    <strong id="pendingPaymentsNgn">
+                        ₦0
+                    </strong>
+
+
+                    <span id="pendingPaymentsUsd">
+                        $0
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Payments awaiting completion
+                </p>
+
+            </div>
+
+
+
+            <!-- OUTSTANDING -->
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    OUTSTANDING
+                </span>
+
+
+                <div class="money-stack">
+
+                    <strong id="outstandingValueNgn">
+                        ₦0
+                    </strong>
+
+
+                    <span id="outstandingValueUsd">
+                        $0
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Accepted contract value still unpaid
+                </p>
+
+            </div>
+
+
+
+            <!-- THIS MONTH -->
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    THIS MONTH
+                </span>
+
+
+                <div class="money-stack">
+
+                    <strong id="monthRevenueNgn">
+                        ₦0
+                    </strong>
+
+
+                    <span id="monthRevenueUsd">
+                        $0
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Revenue received this month
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SEARCH / FILTER
+        ====================================== -->
+
+        <section class="dashboard-card payment-toolbar">
+
+            <input
+                type="search"
+                id="paymentSearchInput"
+                placeholder="Search payments, clients, projects, references..."
+            >
+
+
+            <select id="paymentStatusFilter">
+
+                <option value="ALL">
+                    All Statuses
+                </option>
+
+                <option value="paid">
+                    Paid
+                </option>
+
+                <option value="pending">
+                    Pending
+                </option>
+
+                <option value="failed">
+                    Failed
+                </option>
+
+                <option value="refunded">
+                    Refunded
+                </option>
+
+            </select>
+
+
+            <select id="paymentCurrencyFilter">
+
+                <option value="ALL">
+                    All Currencies
+                </option>
+
+                <option value="NGN">
+                    NGN
+                </option>
+
+                <option value="USD">
+                    USD
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PAYMENT RECORDS
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        TRANSACTION RECORDS
+                    </span>
+
+                    <h2>
+                        Payment Records
+                    </h2>
+
+                </div>
+
+
+                <span id="paymentCount">
+                    0 payments
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Client</th>
+
+                            <th>Project</th>
+
+                            <th>Proposal</th>
+
+                            <th>Amount</th>
+
+                            <th>Method</th>
+
+                            <th>Status</th>
+
+                            <th>Reference</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="paymentsTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================
+     RECORD PAYMENT MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="paymentModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    REVENUE
+                </span>
+
+                <h2>
+                    Record Payment
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closePaymentModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <form id="paymentForm">
+
+
+            <!-- =================================
+                 COMMERCIAL CONNECTION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Commercial Connection
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full-width">
+
+                        <label for="paymentProposal">
+                            Proposal *
+                        </label>
+
+
+                        <select
+                            id="paymentProposal"
+                            required
+                        >
+
+                            <option value="">
+                                Select proposal
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Project
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="paymentProject"
+                            readonly
+                            placeholder="Select a proposal"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Client
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="paymentClient"
+                            readonly
+                            placeholder="Select a proposal"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 PAYMENT INFORMATION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Payment Information
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="paymentAmount">
+                            Amount *
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="paymentAmount"
+                            min="0"
+                            step="1000"
+                            required
+                            placeholder="700000"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="paymentCurrency">
+                            Currency
+                        </label>
+
+
+                        <select id="paymentCurrency">
+
+                            <option value="NGN">
+                                NGN — Nigerian Naira
+                            </option>
+
+                            <option value="USD">
+                                USD — US Dollar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="paymentStatus">
+                            Status
+                        </label>
+
+
+                        <select id="paymentStatus">
+
+                            <option value="paid">
+                                Paid
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="failed">
+                                Failed
+                            </option>
+
+                            <option value="refunded">
+                                Refunded
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="paymentMethod">
+                            Payment Method
+                        </label>
+
+
+                        <select id="paymentMethod">
+
+                            <option value="">
+                                Select method
+                            </option>
+
+                            <option value="BANK_TRANSFER">
+                                Bank Transfer
+                            </option>
+
+                            <option value="CASH">
+                                Cash
+                            </option>
+
+                            <option value="POS">
+                                POS
+                            </option>
+
+                            <option value="PAYSTACK">
+                                Paystack
+                            </option>
+
+                            <option value="FLUTTERWAVE">
+                                Flutterwave
+                            </option>
+
+                            <option value="OTHER">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="paymentDate">
+                            Payment Date
+                        </label>
+
+
+                        <input
+                            type="datetime-local"
+                            id="paymentDate"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="paymentReference">
+                            Reference
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="paymentReference"
+                            placeholder="Transaction reference"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full-width">
+
+                        <label for="paymentNotes">
+                            Internal Notes
+                        </label>
+
+
+                        <textarea
+                            id="paymentNotes"
+                            rows="4"
+                            placeholder="Internal accounting notes..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 PROPOSAL BALANCE
+            ================================== -->
+
+            <div
+                id="proposalBalanceBox"
+                class="proposal-balance-box"
+            >
+
+                <div>
+
+                    <span>
+                        Contract Value
+                    </span>
+
+                    <strong id="proposalContractValue">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Already Paid
+                    </span>
+
+                    <strong id="proposalPaidValue">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Outstanding After This Payment
+                    </span>
+
+                    <strong id="proposalOutstandingValue">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <p
+                id="paymentFormMessage"
+                class="form-message"
+            ></p>
+
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelPaymentButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="savePaymentButton"
+                >
+                    Save Payment
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script
+    type="module"
+    src="../js/payments.js"
+></script>
+
+</body>
+
+</html>

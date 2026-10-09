@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Leads | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="crm-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>CRM</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="leads.html"
+                class="nav-link active"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+
+            <a
+    href="projects.html"
+    class="nav-link"
+>
+    <span>▣</span>
+    Projects
+</a>
+
+
+            <a href="#" class="nav-link">
+                <span>◇</span>
+                Proposals
+            </a>
+
+
+            <a
+    href="payments.html"
+    class="nav-link"
+>
+    <span>₦</span>
+    Payments
+</a>
+
+
+            <a href="#" class="nav-link">
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a href="#" class="nav-link">
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    PROSPECT MANAGEMENT
+                </span>
+
+                <h1>
+                    Leads
+                </h1>
+
+                <p>
+                    Manage every prospect from first contact to client.
+                </p>
+
+            </div>
+
+
+            <button
+                class="primary-button"
+                id="addLeadButton"
+            >
+                + Add Lead
+            </button>
+
+        </header>
+
+
+
+        <!-- SEARCH / FILTER -->
+
+        <section class="dashboard-card lead-toolbar">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search leads by name, school or business..."
+            >
+
+
+            <select id="stageFilter">
+
+                <option value="ALL">
+                    All Stages
+                </option>
+
+                <option value="NEW_LEAD">
+                    New Lead
+                </option>
+
+                <option value="QUALIFIED">
+                    Qualified
+                </option>
+
+                <option value="DISCOVERY">
+                    Discovery
+                </option>
+
+                <option value="PROPOSAL">
+                    Proposal
+                </option>
+
+                <option value="FOLLOW_UP">
+                    Follow-Up
+                </option>
+
+                <option value="WON">
+                    Won
+                </option>
+
+                <option value="ONBOARDING">
+                    Onboarding
+                </option>
+
+                <option value="PRODUCTION">
+                    Production
+                </option>
+
+                <option value="LAUNCHED">
+                    Launched
+                </option>
+
+                <option value="CLIENT">
+                    Client
+                </option>
+
+                <option value="LOST">
+                    Lost
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- LEADS TABLE -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PIPELINE
+                    </span>
+
+                    <h2>
+                        All Leads
+                    </h2>
+
+                </div>
+
+
+                <span id="leadCount">
+                    0 leads
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Business</th>
+
+                            <th>Contact</th>
+
+                            <th>Stage</th>
+
+                            <th>Value</th>
+
+                            <th>Added</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="leadsTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================
+     ADD LEAD MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="leadModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    NEW PROSPECT
+                </span>
+
+                <h2>
+                    Add Lead
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeLeadModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <form id="leadForm">
+
+
+            <!-- CONTACT -->
+
+            <div class="form-section">
+
+                <h3>
+                    Contact
+                </h3>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="firstName">
+                            First Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="lastName">
+                            Last Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="businessName">
+                            Business / School
+                        </label>
+
+                        <input
+                            type="text"
+                            id="businessName"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="businessType">
+                            Business Type
+                        </label>
+
+                        <select id="businessType">
+
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="PRIVATE_SCHOOL">
+                                Private School
+                            </option>
+
+                            <option value="BUSINESS">
+                                Business
+                            </option>
+
+                            <option value="INDIVIDUAL">
+                                Individual
+                            </option>
+
+                            <option value="ORGANIZATION">
+                                Organization
+                            </option>
+
+                            <option value="OTHER">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="whatsapp">
+                            WhatsApp
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="whatsapp"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="website">
+                            Website
+                        </label>
+
+                        <input
+                            type="url"
+                            id="website"
+                            placeholder="https://"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SALES -->
+
+            <div class="form-section">
+
+                <h3>
+                    Sales Information
+                </h3>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="source">
+                            Lead Source
+                        </label>
+
+                        <select id="source">
+
+                            <option value="">
+                                Select source
+                            </option>
+
+                            <option value="WEBSITE">
+                                Website
+                            </option>
+
+                            <option value="WHATSAPP">
+                                WhatsApp
+                            </option>
+
+                            <option value="PHONE">
+                                Phone Call
+                            </option>
+
+                            <option value="REFERRAL">
+                                Referral
+                            </option>
+
+                            <option value="SOCIAL_MEDIA">
+                                Social Media
+                            </option>
+
+                            <option value="PROSPECTING">
+                                Prospecting
+                            </option>
+
+                            <option value="OTHER">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="stage">
+                            Pipeline Stage
+                        </label>
+
+                        <select id="stage">
+
+                            <option value="NEW_LEAD">
+                                New Lead
+                            </option>
+
+                            <option value="QUALIFIED">
+                                Qualified
+                            </option>
+
+                            <option value="DISCOVERY">
+                                Discovery
+                            </option>
+
+                            <option value="PROPOSAL">
+                                Proposal
+                            </option>
+
+                            <option value="FOLLOW_UP">
+                                Follow-Up
+                            </option>
+
+                            <option value="WON">
+                                Won
+                            </option>
+
+                            <option value="ONBOARDING">
+                                Onboarding
+                            </option>
+
+                            <option value="PRODUCTION">
+                                Production
+                            </option>
+
+                            <option value="LAUNCHED">
+                                Launched
+                            </option>
+
+                            <option value="CLIENT">
+                                Client
+                            </option>
+
+                            <option value="LOST">
+                                Lost
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="estimatedValue">
+                            Estimated Value (₦)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="estimatedValue"
+                            min="0"
+                            step="1000"
+                            placeholder="1400000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sourceDetails">
+                            Source Details
+                        </label>
+
+                        <input
+                            type="text"
+                            id="sourceDetails"
+                            placeholder="e.g. Called from school prospect list"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NOTES -->
+
+            <div class="form-section">
+
+                <h3>
+                    Notes
+                </h3>
+
+
+                <div class="form-group">
+
+                    <textarea
+                        id="notes"
+                        rows="4"
+                        placeholder="Important information about this prospect..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <p
+                id="leadFormMessage"
+                class="form-message"
+            ></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelLeadButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveLeadButton"
+                >
+                    Save Lead
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script
+    type="module"
+    src="../js/leads.js"
+></script>
+
+</body>
+
+</html>
