@@ -2375,3 +2375,9 @@ ACTIVITY RESPONSIVE
     }
 
 }
+
+/* PARTIAL PAYMENT STATUS */
+
+.status-partial {
+    background: rgba(111, 66, 193, 0.10);
+}

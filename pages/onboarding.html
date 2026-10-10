@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#17152f" />
+  <title>Client Onboarding | Samuel Okokon CRM</title>
+  <style>
+    :root {
+      --ink: #201f35;
+      --muted: #73738b;
+      --line: #e7e7f0;
+      --paper: #ffffff;
+      --canvas: #f6f6fb;
+      --violet: #6555d9;
+      --violet-dark: #4d3fc1;
+      --violet-soft: #f0edff;
+      --green: #16835e;
+      --green-soft: #e9f8f1;
+      --amber: #a8640b;
+      --amber-soft: #fff4dc;
+      --red: #b83d4b;
+      --red-soft: #fff0f1;
+      --shadow: 0 14px 40px rgba(31, 28, 76, .06);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--canvas); }
+    button, input, select, textarea { font: inherit; }
+    button, select { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 15px clamp(18px, 4vw, 56px); color: white; background: #17152f; box-shadow: 0 8px 24px rgba(17, 16, 42, .16); }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: max-content; }
+    .brand-mark { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.24); display: grid; place-items: center; border-radius: 13px; font-weight: 850; letter-spacing: -1px; background: linear-gradient(135deg, #7869ed, #4133ae); }
+    .brand-copy strong { display: block; font-size: 12px; letter-spacing: .11em; }
+    .brand-copy span { display: block; margin-top: 3px; font-size: 11px; color: #aaa7d0; }
+    .nav { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; }
+    .nav a { color: #cbc9e0; padding: 10px 13px; border-radius: 10px; font-size: 13px; font-weight: 650; }
+    .nav a:hover, .nav a.active { background: rgba(255,255,255,.1); color: white; }
+    .page { width: min(1440px, 100%); padding: 34px clamp(16px, 4vw, 54px) 60px; margin: auto; }
+    .heading-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 22px; margin-bottom: 25px; }
+    .eyebrow { color: var(--violet); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 8px; }
+    h1 { margin: 0; font-size: clamp(27px, 3.6vw, 38px); line-height: 1.13; letter-spacing: -.045em; }
+    .subtitle { color: var(--muted); max-width: 680px; line-height: 1.65; margin: 10px 0 0; font-size: 14px; }
+    .heading-chip { display: flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid #ddd9fb; border-radius: 999px; background: #fff; color: #5145ba; font-size: 12px; font-weight: 750; white-space: nowrap; }
+    .heading-chip i { width: 8px; height: 8px; display: inline-block; border-radius: 50%; background: #6555d9; }
+    .alert { border: 1px solid #f2d99b; background: #fff9e9; color: #79500c; border-radius: 13px; padding: 13px 15px; margin-bottom: 18px; line-height: 1.5; font-size: 13px; }
+    .alert.error { background: var(--red-soft); color: #8b2937; border-color: #f4c8ce; }
+    .alert.success { background: var(--green-soft); color: #166746; border-color: #c8eedb; }
+    .hidden { display: none !important; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .card-pad { padding: 21px; }
+    .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+    .section-heading h2 { font-size: 17px; margin: 0; letter-spacing: -.02em; }
+    .section-heading p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+    .top-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(290px, .75fr); gap: 18px; margin-bottom: 18px; }
+    .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+    .field label, .field-label { font-weight: 750; color: #55556e; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+    .field input, .field select, .field textarea, .control { width: 100%; min-width: 0; border: 1px solid #dedeea; border-radius: 10px; padding: 11px 12px; background: #fff; color: var(--ink); outline: none; }
+    .field input:focus, .field select:focus, .field textarea:focus, .control:focus { border-color: #8c80ed; box-shadow: 0 0 0 3px rgba(101,85,217,.12); }
+    .field textarea { resize: vertical; min-height: 90px; line-height: 1.55; }
+    .record-select-row { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 10px; }
+    .identity { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 15px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .identity strong { font-size: 15px; display: block; }
+    .identity span { color: var(--muted); font-size: 12px; display: block; margin-top: 5px; }
+    .status-pill { border-radius: 999px; display: inline-flex; align-items: center; padding: 7px 10px; background: var(--violet-soft); color: #5145ba; text-transform: uppercase; font-weight: 800; font-size: 10px; letter-spacing: .06em; height: fit-content; }
+    .project-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 16px; }
+    .project-pair span { display:block; color: var(--muted); font-size: 11px; margin-bottom: 5px; }
+    .project-pair strong { font-size: 13px; word-break: break-word; }
+    .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .details-grid .wide { grid-column: 1 / -1; }
+    .form-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
+    .button { border: 0; border-radius: 10px; padding: 11px 15px; font-size: 12px; font-weight: 800; transition: transform .15s ease, background .15s ease; }
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: var(--violet); color: white; }
+    .button-primary:hover { background: var(--violet-dark); }
+    .button-secondary { background: #f2f1fb; color: #554bb2; border: 1px solid #e1defb; }
+    .button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; margin-bottom: 18px; }
+    .stat { border-radius: 15px; border: 1px solid var(--line); background: white; padding: 17px 18px; box-shadow: var(--shadow); }
+    .stat-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 11px; font-weight: 700; }
+    .stat-icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; background: var(--violet-soft); color: var(--violet); font-weight: 900; }
+    .stat-number { margin: 12px 0 4px; font-size: 28px; font-weight: 850; letter-spacing: -.05em; }
+    .stat-note { color: var(--muted); font-size: 11px; }
+    .progress-track { height: 7px; border-radius: 999px; overflow: hidden; background: #ecebf5; margin-top: 13px; }
+    .progress-fill { width: 0%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #6a59e4, #a69cf8); transition: width .3s ease; }
+    .checklist-card { margin-top: 18px; }
+    .checklist-tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .checklist-tools input { width: min(270px, 100%); }
+    .checklist-tools select { width: auto; min-width: 150px; }
+    .category-heading { padding: 16px 0 10px; display: flex; align-items: center; gap: 9px; color: #55516f; font-size: 11px; font-weight: 850; text-transform: uppercase; letter-spacing: .11em; }
+    .category-heading::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+    .items-list { display: grid; gap: 10px; }
+    .item-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(165px, 195px); gap: 15px; border: 1px solid var(--line); border-radius: 13px; padding: 15px; background: #fff; }
+    .item-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .item-title { font-size: 13px; font-weight: 800; }
+    .required-tag, .optional-tag { border-radius: 5px; padding: 4px 6px; font-size: 9px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+    .required-tag { color: #8e3542; background: #fff0f1; }
+    .optional-tag { color: #6a6a80; background: #f0f0f6; }
+    .item-key { color: #9898ab; font-size: 10px; margin-top: 5px; }
+    .item-notes { display: block; margin-top: 10px; width: 100%; min-height: 38px; max-width: 100%; resize: vertical; border: 1px solid #e9e8f1; border-radius: 8px; background: #fcfcfe; padding: 8px 9px; color: var(--ink); font-size: 12px; }
+    .item-notes:focus { outline: 0; border-color: #a79ff0; }
+    .item-control { display: flex; flex-direction: column; gap: 7px; justify-content: center; }
+    .item-control label { color: var(--muted); font-size: 10px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; }
+    .item-status { border: 1px solid #dddce9; background: #fff; border-radius: 9px; padding: 10px; font-size: 12px; font-weight: 750; color: #393750; width: 100%; }
+    .save-state { min-height: 14px; color: var(--green); font-size: 10px; }
+    .empty { text-align: center; padding: 35px 20px; color: var(--muted); font-size: 13px; border: 1px dashed #d6d5e6; border-radius: 13px; background: #fbfbfe; }
+    .small-note { color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .footer { text-align: center; color: #9594aa; font-size: 11px; padding: 26px 0 0; }
+    @media (max-width: 960px) { .top-grid { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 650px) { .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding: 13px 16px; } .nav { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .nav a { white-space: nowrap; } .page { padding-top: 25px; } .heading-row { align-items: flex-start; flex-direction: column; } .heading-chip { white-space: normal; } .card-pad { padding: 16px; } .record-select-row { grid-template-columns: 1fr; } .project-pair, .details-grid { grid-template-columns: 1fr; } .details-grid .wide { grid-column: auto; } .item-card { grid-template-columns: 1fr; } .item-control { max-width: none; } .checklist-tools { align-items: stretch; } .checklist-tools input, .checklist-tools select { width: 100%; } .section-heading { align-items: flex-start; flex-direction: column; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="dashboard.html" aria-label="Samuel Okokon CRM home">
+      <span class="brand-mark">SO</span>
+      <span class="brand-copy"><strong>SAMUEL OKOKON</strong><span>CRM · CLIENT DELIVERY</span></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="leads.html">Leads</a>
+      <a href="projects.html">Projects</a>
+      <a class="active" href="onboarding.html">Onboarding</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="heading-row">
+      <div>
+        <div class="eyebrow">Client delivery · Stage 07</div>
+        <h1>Client Onboarding</h1>
+        <p class="subtitle">Keep project requirements, client materials, approvals and readiness in one place. Every update is saved to your CRM database.</p>
+      </div>
+      <div class="heading-chip"><i></i> Delivery workspace</div>
+    </div>
+
+    <div id="pageAlert" class="alert hidden" role="status" aria-live="polite"></div>
+    <div id="loadingPanel" class="card card-pad"><strong>Connecting to your CRM…</strong><p class="small-note">Loading onboarding records and project details from Supabase.</p></div>
+
+    <div id="workspace" class="hidden">
+      <section class="top-grid">
+        <div class="card card-pad">
+          <div class="section-heading">
+            <div><h2>Active onboarding record</h2><p>Select a client project to manage its readiness.</p></div>
+          </div>
+          <div class="record-select-row">
+            <div class="field"><label for="onboardingSelect">Onboarding record</label><select id="onboardingSelect" class="control"></select></div>
+            <button id="refreshButton" class="button button-secondary" type="button">Refresh data ↻</button>
+          </div>
+          <div class="identity">
+            <div><strong id="identityName">—</strong><span id="identityContact">Client contact not loaded</span></div>
+            <span id="recordStatusBadge" class="status-pill">NOT STARTED</span>
+          </div>
+          <div class="project-pair">
+            <div><span>Project</span><strong id="projectName">—</strong></div>
+            <div><span>Project stage</span><strong id="projectStatus">—</strong></div>
+            <div><span>Client / school</span><strong id="businessName">—</strong></div>
+            <div><span>Estimated project value</span><strong id="projectValue">—</strong></div>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="section-heading"><div><h2>Onboarding controls</h2><p>Update the project dates and working notes.</p></div></div>
+          <form id="detailsForm">
+            <div class="details-grid">
+              <div class="field"><label for="onboardingStatus">Onboarding status</label><select id="onboardingStatus" required>
+                <option value="NOT_STARTED">Not started</option>
+                <option value="IN_PROGRESS">In progress</option>
+                <option value="WAITING_ON_CLIENT">Waiting on client</option>
+                <option value="READY_FOR_PRODUCTION">Ready for production</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="ON_HOLD">On hold</option>
+              </select></div>
+              <div class="field"><label for="targetDate">Target completion date</label><input id="targetDate" type="date" /></div>
+              <div class="field"><label for="kickoffDate">Kickoff date</label><input id="kickoffDate" type="datetime-local" /></div>
+              <div class="field"><label for="completedAt">Completed at</label><input id="completedAt" type="datetime-local" disabled /></div>
+              <div class="field wide"><label for="onboardingNotes">Project onboarding notes</label><textarea id="onboardingNotes" rows="3" placeholder="Record agreements, blockers, payment verification notes, or the next action…"></textarea></div>
+            </div>
+            <div class="form-actions"><button id="saveDetailsButton" class="button button-primary" type="submit">Save onboarding details</button></div>
+          </form>
+          <p class="small-note" style="margin-bottom:0">Production readiness should only be confirmed after your scope, approvals and payment checks are complete.</p>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Checklist summary">
+        <article class="stat"><div class="stat-top"><span>Required items</span><span class="stat-icon">◎</span></div><div class="stat-number" id="requiredCount">—</div><div class="stat-note">Must be addressed before readiness</div></article>
+        <article class="stat"><div class="stat-top"><span>Approved</span><span class="stat-icon">✓</span></div><div class="stat-number" id="approvedCount">—</div><div class="stat-note">Required items approved</div></article>
+        <article class="stat"><div class="stat-top"><span>Still outstanding</span><span class="stat-icon">!</span></div><div class="stat-number" id="outstandingCount">—</div><div class="stat-note">Required items not yet approved</div></article>
+        <article class="stat"><div class="stat-top"><span>Readiness progress</span><span class="stat-icon">↗</span></div><div class="stat-number" id="progressPercent">0%</div><div class="stat-note" id="progressSummary">Waiting for checklist</div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></article>
+      </section>
+
+      <section class="card card-pad checklist-card">
+        <div class="section-heading">
+          <div><h2>Project readiness checklist</h2><p>Change an item's status to save it. Add notes for follow-ups and client-provided context.</p></div>
+          <div class="checklist-tools">
+            <input id="itemSearch" class="control" type="search" placeholder="Search checklist…" aria-label="Search checklist items" />
+            <select id="categoryFilter" class="control" aria-label="Filter by category"><option value="ALL">All categories</option></select>
+          </div>
+        </div>
+        <div id="checklistContainer"><div class="empty">Choose an onboarding record to view its checklist.</div></div>
+        <div class="footer">SAMUEL OKOKON · PROFESSIONAL WEBSITES. BUILT FOR BUSINESS.</div>
+      </section>
+
+      <section class="card card-pad" style="margin-top:18px">
+        <div class="section-heading"><div><h2>Start onboarding for another project</h2><p>Create the onboarding record and add the standard 18-item website project checklist.</p></div></div>
+        <div class="record-select-row">
+          <div class="field"><label for="newProjectSelect">Project without onboarding</label><select id="newProjectSelect" class="control"><option value="">Loading available projects…</option></select></div>
+          <button id="createOnboardingButton" class="button button-primary" type="button">Create onboarding</button>
+        </div>
+        <p class="small-note" style="margin-bottom:0">This creates records only after you press the button. It does not create or modify a client, proposal, payment or project record.</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- Keep these scripts in this order. The existing supabase.js must initialize the authenticated Supabase client. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="onboarding.js"></script>
+</body>
+</html>

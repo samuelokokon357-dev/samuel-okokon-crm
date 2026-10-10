@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -16,18 +15,13 @@
         rel="stylesheet"
         href="../css/crm.css"
     >
-
 </head>
-
 
 <body>
 
 <div class="crm-layout">
 
-
-    <!-- =====================================
-         SIDEBAR
-    ====================================== -->
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
@@ -38,11 +32,8 @@
             </div>
 
             <div>
-
                 <h2>Samuel Okokon</h2>
-
                 <span>CRM</span>
-
             </div>
 
         </div>
@@ -58,7 +49,6 @@
                 Dashboard
             </a>
 
-
             <a
                 href="leads.html"
                 class="nav-link"
@@ -66,7 +56,6 @@
                 <span>◉</span>
                 Leads
             </a>
-
 
             <a
                 href="projects.html"
@@ -76,7 +65,6 @@
                 Projects
             </a>
 
-
             <a
                 href="proposals.html"
                 class="nav-link"
@@ -84,7 +72,6 @@
                 <span>◇</span>
                 Proposals
             </a>
-
 
             <a
                 href="payments.html"
@@ -94,7 +81,6 @@
                 Payments
             </a>
 
-
             <a
                 href="#"
                 class="nav-link"
@@ -102,7 +88,6 @@
                 <span>✓</span>
                 Tasks
             </a>
-
 
             <a
                 href="#"
@@ -126,13 +111,9 @@
     </aside>
 
 
-
-    <!-- =====================================
-         MAIN CONTENT
-    ====================================== -->
+    <!-- MAIN CONTENT -->
 
     <main class="main-content">
-
 
         <header class="dashboard-header">
 
@@ -142,16 +123,14 @@
                     REVENUE MANAGEMENT
                 </span>
 
-                <h1>
-                    Payments
-                </h1>
+                <h1>Payments</h1>
 
                 <p>
-                    Track money received, pending payments and outstanding balances.
+                    Track money received, pending payments
+                    and outstanding balances.
                 </p>
 
             </div>
-
 
             <button
                 type="button"
@@ -164,15 +143,9 @@
         </header>
 
 
-
-        <!-- =====================================
-             REVENUE OVERVIEW
-        ====================================== -->
+        <!-- REVENUE OVERVIEW -->
 
         <section class="payment-summary-grid">
-
-
-            <!-- TOTAL REVENUE -->
 
             <div class="dashboard-card">
 
@@ -180,20 +153,17 @@
                     TOTAL REVENUE
                 </span>
 
-
                 <div class="money-stack">
 
                     <strong id="totalRevenueNgn">
                         ₦0
                     </strong>
 
-
                     <span id="totalRevenueUsd">
                         $0
                     </span>
 
                 </div>
-
 
                 <p>
                     Money successfully received
@@ -202,15 +172,11 @@
             </div>
 
 
-
-            <!-- PENDING -->
-
             <div class="dashboard-card">
 
                 <span class="eyebrow">
                     PENDING
                 </span>
-
 
                 <div class="money-stack">
 
@@ -218,13 +184,11 @@
                         ₦0
                     </strong>
 
-
                     <span id="pendingPaymentsUsd">
                         $0
                     </span>
 
                 </div>
-
 
                 <p>
                     Payments awaiting completion
@@ -233,15 +197,11 @@
             </div>
 
 
-
-            <!-- OUTSTANDING -->
-
             <div class="dashboard-card">
 
                 <span class="eyebrow">
                     OUTSTANDING
                 </span>
-
 
                 <div class="money-stack">
 
@@ -249,13 +209,11 @@
                         ₦0
                     </strong>
 
-
                     <span id="outstandingValueUsd">
                         $0
                     </span>
 
                 </div>
-
 
                 <p>
                     Accepted contract value still unpaid
@@ -264,15 +222,11 @@
             </div>
 
 
-
-            <!-- THIS MONTH -->
-
             <div class="dashboard-card">
 
                 <span class="eyebrow">
                     THIS MONTH
                 </span>
-
 
                 <div class="money-stack">
 
@@ -280,13 +234,11 @@
                         ₦0
                     </strong>
 
-
                     <span id="monthRevenueUsd">
                         $0
                     </span>
 
                 </div>
-
 
                 <p>
                     Revenue received this month
@@ -297,10 +249,7 @@
         </section>
 
 
-
-        <!-- =====================================
-             SEARCH / FILTER
-        ====================================== -->
+        <!-- SEARCH AND FILTERS -->
 
         <section class="dashboard-card payment-toolbar">
 
@@ -310,31 +259,33 @@
                 placeholder="Search payments, clients, projects, references..."
             >
 
-
             <select id="paymentStatusFilter">
 
                 <option value="ALL">
                     All Statuses
                 </option>
 
-                <option value="paid">
+                <option value="PAID">
                     Paid
                 </option>
 
-                <option value="pending">
+                <option value="PENDING">
                     Pending
                 </option>
 
-                <option value="failed">
+                <option value="PARTIAL">
+                    Partial
+                </option>
+
+                <option value="FAILED">
                     Failed
                 </option>
 
-                <option value="refunded">
+                <option value="REFUNDED">
                     Refunded
                 </option>
 
             </select>
-
 
             <select id="paymentCurrencyFilter">
 
@@ -355,10 +306,7 @@
         </section>
 
 
-
-        <!-- =====================================
-             PAYMENT RECORDS
-        ====================================== -->
+        <!-- PAYMENT RECORDS -->
 
         <section class="dashboard-card">
 
@@ -370,12 +318,9 @@
                         TRANSACTION RECORDS
                     </span>
 
-                    <h2>
-                        Payment Records
-                    </h2>
+                    <h2>Payment Records</h2>
 
                 </div>
-
 
                 <span id="paymentCount">
                     0 payments
@@ -391,27 +336,17 @@
                     <thead>
 
                         <tr>
-
                             <th>Date</th>
-
                             <th>Client</th>
-
                             <th>Project</th>
-
                             <th>Proposal</th>
-
                             <th>Amount</th>
-
                             <th>Method</th>
-
                             <th>Status</th>
-
                             <th>Reference</th>
-
                         </tr>
 
                     </thead>
-
 
                     <tbody id="paymentsTableBody"></tbody>
 
@@ -426,10 +361,7 @@
 </div>
 
 
-
-<!-- =====================================
-     RECORD PAYMENT MODAL
-====================================== -->
+<!-- RECORD PAYMENT MODAL -->
 
 <div
     class="modal-overlay"
@@ -437,7 +369,6 @@
 >
 
     <div class="modal-card">
-
 
         <div class="modal-header">
 
@@ -447,12 +378,9 @@
                     REVENUE
                 </span>
 
-                <h2>
-                    Record Payment
-                </h2>
+                <h2>Record Payment</h2>
 
             </div>
-
 
             <button
                 type="button"
@@ -465,30 +393,21 @@
         </div>
 
 
-
         <form id="paymentForm">
 
-
-            <!-- =================================
-                 COMMERCIAL CONNECTION
-            ================================== -->
+            <!-- COMMERCIAL CONNECTION -->
 
             <div class="form-section">
 
-                <h3>
-                    Commercial Connection
-                </h3>
-
+                <h3>Commercial Connection</h3>
 
                 <div class="form-grid">
-
 
                     <div class="form-group full-width">
 
                         <label for="paymentProposal">
                             Proposal *
                         </label>
-
 
                         <select
                             id="paymentProposal"
@@ -504,13 +423,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
-                        <label>
+                        <label for="paymentProject">
                             Project
                         </label>
-
 
                         <input
                             type="text"
@@ -522,13 +439,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
-                        <label>
+                        <label for="paymentClient">
                             Client
                         </label>
-
 
                         <input
                             type="text"
@@ -544,20 +459,13 @@
             </div>
 
 
-
-            <!-- =================================
-                 PAYMENT INFORMATION
-            ================================== -->
+            <!-- PAYMENT INFORMATION -->
 
             <div class="form-section">
 
-                <h3>
-                    Payment Information
-                </h3>
-
+                <h3>Payment Information</h3>
 
                 <div class="form-grid">
-
 
                     <div class="form-group">
 
@@ -565,12 +473,11 @@
                             Amount *
                         </label>
 
-
                         <input
                             type="number"
                             id="paymentAmount"
-                            min="0"
-                            step="1000"
+                            min="0.01"
+                            step="0.01"
                             required
                             placeholder="700000"
                         >
@@ -578,13 +485,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="paymentCurrency">
                             Currency
                         </label>
-
 
                         <select id="paymentCurrency">
 
@@ -601,6 +506,11 @@
                     </div>
 
 
+                    <!--
+                        IMPORTANT:
+                        Values below exactly match
+                        the crm_payment_status enum.
+                    -->
 
                     <div class="form-group">
 
@@ -608,22 +518,25 @@
                             Status
                         </label>
 
-
                         <select id="paymentStatus">
 
-                            <option value="paid">
+                            <option value="PAID">
                                 Paid
                             </option>
 
-                            <option value="pending">
+                            <option value="PENDING">
                                 Pending
                             </option>
 
-                            <option value="failed">
+                            <option value="PARTIAL">
+                                Partial
+                            </option>
+
+                            <option value="FAILED">
                                 Failed
                             </option>
 
-                            <option value="refunded">
+                            <option value="REFUNDED">
                                 Refunded
                             </option>
 
@@ -632,13 +545,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="paymentMethod">
                             Payment Method
                         </label>
-
 
                         <select id="paymentMethod">
 
@@ -675,13 +586,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="paymentDate">
                             Payment Date
                         </label>
-
 
                         <input
                             type="datetime-local"
@@ -691,13 +600,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="paymentReference">
                             Reference
                         </label>
-
 
                         <input
                             type="text"
@@ -708,13 +615,11 @@
                     </div>
 
 
-
                     <div class="form-group full-width">
 
                         <label for="paymentNotes">
                             Internal Notes
                         </label>
-
 
                         <textarea
                             id="paymentNotes"
@@ -729,21 +634,13 @@
             </div>
 
 
+            <!-- PROPOSAL BALANCE -->
 
-            <!-- =================================
-                 PROPOSAL BALANCE
-            ================================== -->
-
-            <div
-                id="proposalBalanceBox"
-                class="proposal-balance-box"
-            >
+            <div class="proposal-balance-box">
 
                 <div>
 
-                    <span>
-                        Contract Value
-                    </span>
+                    <span>Contract Value</span>
 
                     <strong id="proposalContractValue">
                         —
@@ -754,9 +651,7 @@
 
                 <div>
 
-                    <span>
-                        Already Paid
-                    </span>
+                    <span>Already Paid</span>
 
                     <strong id="proposalPaidValue">
                         —
@@ -767,9 +662,7 @@
 
                 <div>
 
-                    <span>
-                        Outstanding After This Payment
-                    </span>
+                    <span>Outstanding After This Payment</span>
 
                     <strong id="proposalOutstandingValue">
                         —
@@ -780,12 +673,11 @@
             </div>
 
 
-
             <p
                 id="paymentFormMessage"
                 class="form-message"
+                role="status"
             ></p>
-
 
 
             <div class="modal-actions">
@@ -797,7 +689,6 @@
                 >
                     Cancel
                 </button>
-
 
                 <button
                     type="submit"
@@ -814,7 +705,6 @@
     </div>
 
 </div>
-
 
 
 <script
