@@ -1,3 +1,5 @@
+import { supabase } from './supabase.js';
+
 /* ==========================================================
    SAMUEL OKOKON CRM — CLIENT ONBOARDING
    Additive page. Uses existing supabase.js and existing tables:
@@ -57,6 +59,7 @@
     activeOnboardingId: null,
     projectMap: new Map(),
     clientMap: new Map(),
+    clientByLeadId: new Map(),
     leadMap: new Map(),
     saving: false,
   };
@@ -91,12 +94,7 @@
   }
 
   function getSupabaseClient() {
-    // Supports the current common names used by plain-script Supabase projects.
-    try {
-      if (typeof supabase !== 'undefined' && supabase && typeof supabase.from === 'function') return supabase;
-    } catch (_) { /* Continue checking common global aliases. */ }
-    const candidates = [window.supabaseClient, window.sb, window.dbClient, window.supabaseDB];
-    return candidates.find((candidate) => candidate && typeof candidate.from === 'function' && candidate.auth) || null;
+    return supabase;
   }
 
   function formatMoney(amount, currency = 'NGN') {
@@ -128,8 +126,8 @@
 
   function getDisplayForProject(project) {
     if (!project) return { business: 'Project not found', contact: 'No linked project details' };
-    const client = project.client_id ? state.clientMap.get(project.client_id) : null;
     const lead = project.lead_id ? state.leadMap.get(project.lead_id) : null;
+    const client = lead?.id ? state.clientByLeadId.get(lead.id) : null;
     const business = client?.business_name || lead?.business_name || project.project_name || 'Unnamed project';
     const contact = client?.contact_name || [lead?.first_name, lead?.last_name].filter(Boolean).join(' ') || '';
     const phone = client?.whatsapp || client?.phone || lead?.whatsapp || lead?.phone || '';
@@ -185,28 +183,36 @@
     if (onboardingResult.error) throw onboardingResult.error;
     state.onboarding = onboardingResult.data || [];
 
-    const [projectResult] = await Promise.all([
-      state.db.from('projects').select('id, project_name, status, client_id, lead_id, estimated_value, start_date, expected_launch_date, launched_at, created_at'),
-    ]);
+    // Use columns confirmed in the current CRM project table.
+    // Do not request projects.client_id: projects are connected to leads here.
+    const projectResult = await state.db
+      .from('projects')
+      .select('id, project_name, status, lead_id, estimated_value, start_date, expected_launch_date, launched_at, created_at')
+      .order('created_at', { ascending: false });
     if (projectResult.error) throw projectResult.error;
     state.projects = projectResult.data || [];
     state.projectMap = new Map(state.projects.map((row) => [row.id, row]));
 
-    const clientIds = [...new Set(state.projects.map((row) => row.client_id).filter(Boolean))];
     const leadIds = [...new Set(state.projects.map((row) => row.lead_id).filter(Boolean))];
     const [clientResult, leadResult] = await Promise.all([
-      clientIds.length
-        ? state.db.from('clients').select('id, business_name, contact_name, email, phone, whatsapp, website, status').in('id', clientIds)
-        : Promise.resolve({ data: [], error: null }),
+      state.db
+        .from('clients')
+        .select('id, lead_id, business_name, contact_name, email, phone, whatsapp, website, status'),
       leadIds.length
         ? state.db.from('leads').select('id, first_name, last_name, business_name, email, phone, whatsapp, website, stage').in('id', leadIds)
         : Promise.resolve({ data: [], error: null }),
     ]);
     if (clientResult.error) throw clientResult.error;
     if (leadResult.error) throw leadResult.error;
+
     state.clients = clientResult.data || [];
     state.leads = leadResult.data || [];
     state.clientMap = new Map(state.clients.map((row) => [row.id, row]));
+    state.clientByLeadId = new Map(
+      state.clients
+        .filter((row) => row.lead_id)
+        .map((row) => [row.lead_id, row])
+    );
     state.leadMap = new Map(state.leads.map((row) => [row.id, row]));
   }
 
@@ -368,6 +374,14 @@
     const status = byId('onboardingStatus').value;
     const existingCompletedAt = onboarding.completed_at;
     const completedAt = status === 'COMPLETED' ? (existingCompletedAt || new Date().toISOString()) : existingCompletedAt;
+    if (status === 'READY_FOR_PRODUCTION' || status === 'COMPLETED') {
+      const requiredItems = state.items.filter((item) => item.is_required);
+      const outstandingItems = requiredItems.filter((item) => item.status !== 'APPROVED');
+      if (outstandingItems.length > 0) {
+        showAlert(`Cannot set status to ${readable(status)} yet. ${outstandingItems.length} required checklist item(s) still need approval.`, 'error');
+        return;
+      }
+    }
     const payload = {
       status,
       target_completion_date: byId('targetDate').value || null,
@@ -506,7 +520,7 @@
     try {
       state.db = getSupabaseClient();
       if (!state.db) {
-        throw new Error('The Supabase client was not found. Confirm that supabase.js initializes a client named supabase, supabaseClient, sb, dbClient, or supabaseDB, and that it loads before onboarding.js.');
+        throw new Error('The Supabase client could not be initialized. Check the import at the top of ../js/onboarding.js and confirm ../js/supabase.js exports the authenticated client.');
       }
       const auth = await state.db.auth.getUser();
       if (auth.error) throw auth.error;

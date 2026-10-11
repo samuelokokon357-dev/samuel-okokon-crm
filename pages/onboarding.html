@@ -114,14 +114,17 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="dashboard.html" aria-label="Samuel Okokon CRM home">
+    <a class="brand" href="../index.html" aria-label="Samuel Okokon CRM home">
       <span class="brand-mark">SO</span>
       <span class="brand-copy"><strong>SAMUEL OKOKON</strong><span>CRM · CLIENT DELIVERY</span></span>
     </a>
     <nav class="nav" aria-label="Main navigation">
-      <a href="dashboard.html">Dashboard</a>
+      <a href="../index.html">Dashboard</a>
       <a href="leads.html">Leads</a>
       <a href="projects.html">Projects</a>
+      <a href="proposals.html">Proposals</a>
+      <a href="payments.html">Payments</a>
+      <a href="clients.html">Clients</a>
       <a class="active" href="onboarding.html">Onboarding</a>
     </nav>
   </header>
@@ -214,9 +217,6 @@
     </div>
   </main>
 
-  <!-- Keep these scripts in this order. The existing supabase.js must initialize the authenticated Supabase client. -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase.js"></script>
-  <script src="onboarding.js"></script>
+  <script type="module" src="../js/onboarding.js"></script>
 </body>
 </html>

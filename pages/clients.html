@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Clients | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+<body>
+
+<div class="crm-layout">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+
+                <h2>Samuel Okokon</h2>
+
+                <span>CRM</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="leads.html"
+                class="nav-link"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+
+            <a
+                href="projects.html"
+                class="nav-link"
+            >
+                <span>▣</span>
+                Projects
+            </a>
+
+
+            <a
+                href="proposals.html"
+                class="nav-link"
+            >
+                <span>◇</span>
+                Proposals
+            </a>
+
+
+            <a
+                href="payments.html"
+                class="nav-link"
+            >
+                <span>₦</span>
+                Payments
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>✓</span>
+                Tasks
+            </a>
+
+
+            <a
+                href="clients.html"
+                class="nav-link active"
+            >
+                <span>♧</span>
+                Clients
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    CLIENT RELATIONSHIP MANAGEMENT
+                </span>
+
+                <h1>
+                    Clients
+                </h1>
+
+                <p>
+                    Manage your established client relationships
+                    and keep every client connected to their original lead.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="addClientButton"
+            >
+                + Convert Lead to Client
+            </button>
+
+        </header>
+
+
+        <!-- =====================================
+             CLIENT OVERVIEW
+        ====================================== -->
+
+        <section class="client-summary-grid">
+
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    TOTAL CLIENTS
+                </span>
+
+                <h2 id="totalClientCount">
+                    0
+                </h2>
+
+                <p>
+                    All registered clients
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    ACTIVE CLIENTS
+                </span>
+
+                <h2 id="activeClientCount">
+                    0
+                </h2>
+
+                <p>
+                    Current client relationships
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="eyebrow">
+                    OTHER STATUSES
+                </span>
+
+                <h2 id="otherClientCount">
+                    0
+                </h2>
+
+                <p>
+                    Clients in other statuses
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             SEARCH AND FILTER
+        ====================================== -->
+
+        <section class="dashboard-card client-toolbar">
+
+            <input
+                type="search"
+                id="clientSearchInput"
+                placeholder="Search clients, contacts, email or phone..."
+            >
+
+
+            <select id="clientStatusFilter">
+
+                <option value="ALL">
+                    All Statuses
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- =====================================
+             CLIENT TABLE
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CLIENT DATABASE
+                    </span>
+
+                    <h2>
+                        All Clients
+                    </h2>
+
+                </div>
+
+
+                <span id="clientCount">
+                    0 clients
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Business</th>
+
+                            <th>Contact</th>
+
+                            <th>Email</th>
+
+                            <th>Phone</th>
+
+                            <th>Status</th>
+
+                            <th>Client Since</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="clientsTableBody">
+
+                        <tr>
+
+                            <td colspan="7">
+
+                                <div class="empty-state">
+
+                                    <p>
+                                        Loading clients...
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================
+     CONVERT LEAD TO CLIENT MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="clientModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    CLIENT REGISTRATION
+                </span>
+
+                <h2>
+                    Convert Lead to Client
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeClientModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="clientForm">
+
+
+            <!-- =================================
+                 SELECT EXISTING LEAD
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Select Existing Lead
+                </h3>
+
+
+                <div class="form-group">
+
+                    <label for="clientLead">
+
+                        Lead / Business *
+
+                    </label>
+
+
+                    <select
+                        id="clientLead"
+                        required
+                    >
+
+                        <option value="">
+                            Select an eligible lead
+                        </option>
+
+                    </select>
+
+
+                    <small class="client-form-help">
+
+                        Only leads in Won, Onboarding,
+                        Production, Launched or Client stages
+                        that do not already have a client record
+                        are available here.
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 CLIENT INFORMATION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3>
+                    Client Information
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="clientBusinessName">
+                            Business / School *
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="clientBusinessName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="clientContactName">
+                            Contact Name
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="clientContactName"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="clientEmail">
+                            Email
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="clientEmail"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="clientPhone">
+                            Phone
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="clientPhone"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="clientWhatsapp">
+                            WhatsApp
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="clientWhatsapp"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="clientWebsite">
+                            Website
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="clientWebsite"
+                            placeholder="https://"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="clientNotes">
+                            Client Notes
+                        </label>
+
+
+                        <textarea
+                            id="clientNotes"
+                            rows="4"
+                            placeholder="Important information about this client..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="clientFormMessage"
+                class="form-message"
+                role="status"
+            ></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelClientButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveClientButton"
+                >
+                    Create Client
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="../js/clients.js"
+></script>
+
+</body>
+
+</html>
