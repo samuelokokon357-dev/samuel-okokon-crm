@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#17152f"
+    >
+
+    <title>Tasks & Follow-Ups | Samuel Okokon CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/crm.css"
+    >
+
+</head>
+
+<body>
+
+<div class="crm-layout">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                SO
+            </div>
+
+            <div>
+                <h2>Samuel Okokon</h2>
+                <span>CRM</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="../index.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a
+                href="leads.html"
+                class="nav-link"
+            >
+                <span>◉</span>
+                Leads
+            </a>
+
+            <a
+                href="projects.html"
+                class="nav-link"
+            >
+                <span>▣</span>
+                Projects
+            </a>
+
+            <a
+                href="proposals.html"
+                class="nav-link"
+            >
+                <span>◇</span>
+                Proposals
+            </a>
+
+            <a
+                href="payments.html"
+                class="nav-link"
+            >
+                <span>₦</span>
+                Payments
+            </a>
+
+            <a
+                href="tasks.html"
+                class="nav-link active"
+            >
+                <span>✓</span>
+                Tasks
+            </a>
+
+            <a
+                href="clients.html"
+                class="nav-link"
+            >
+                <span>♧</span>
+                Clients
+            </a>
+
+            <a
+                href="onboarding.html"
+                class="nav-link"
+            >
+                <span>▤</span>
+                Onboarding
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+        <!-- PAGE HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    SALES EXECUTION
+                </span>
+
+                <h1>Tasks & Follow-Ups</h1>
+
+                <p>
+                    Keep every call, follow-up, deadline and
+                    next action under control.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                id="addTaskButton"
+            >
+                + Add Task
+            </button>
+
+        </header>
+
+
+        <!-- =====================================
+             ATTENTION MESSAGE
+        ====================================== -->
+
+        <section class="dashboard-card attention-card">
+
+            <div class="attention-icon">
+                !
+            </div>
+
+            <div class="attention-copy">
+
+                <span class="eyebrow">
+                    YOUR DAILY PRIORITIES
+                </span>
+
+                <h2 id="attentionHeading">
+                    Loading your priorities...
+                </h2>
+
+                <p id="attentionDescription">
+                    Checking your tasks and follow-ups.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             TASK SUMMARY
+        ====================================== -->
+
+        <section class="task-summary-grid">
+
+            <article class="dashboard-card">
+
+                <span class="eyebrow">
+                    OPEN TASKS
+                </span>
+
+                <h2 id="openTaskCount">
+                    0
+                </h2>
+
+                <p>Actions still to complete</p>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="eyebrow">
+                    OVERDUE
+                </span>
+
+                <h2
+                    id="overdueTaskCount"
+                    class="task-metric-danger"
+                >
+                    0
+                </h2>
+
+                <p>Past-due actions</p>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="eyebrow">
+                    DUE TODAY
+                </span>
+
+                <h2 id="todayTaskCount">
+                    0
+                </h2>
+
+                <p>Actions due later today</p>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="eyebrow">
+                    COMPLETED
+                </span>
+
+                <h2 id="completedTaskCount">
+                    0
+                </h2>
+
+                <p>Completed actions</p>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             SEARCH AND FILTERS
+        ====================================== -->
+
+        <section class="dashboard-card task-toolbar">
+
+            <input
+                type="search"
+                id="taskSearchInput"
+                placeholder="Search tasks, schools, contacts or projects..."
+                aria-label="Search tasks"
+            >
+
+
+            <select
+                id="taskViewFilter"
+                aria-label="Filter task view"
+            >
+
+                <option value="ALL">
+                    All Tasks
+                </option>
+
+                <option value="OPEN">
+                    Open Tasks
+                </option>
+
+                <option value="OVERDUE">
+                    Overdue
+                </option>
+
+                <option value="TODAY">
+                    Due Today
+                </option>
+
+                <option value="UPCOMING">
+                    Upcoming
+                </option>
+
+                <option value="COMPLETED">
+                    Completed
+                </option>
+
+            </select>
+
+
+            <select
+                id="taskPriorityFilter"
+                aria-label="Filter by priority"
+            >
+
+                <option value="ALL">
+                    All Priorities
+                </option>
+
+                <option value="HIGH">
+                    High Priority
+                </option>
+
+                <option value="MEDIUM">
+                    Medium Priority
+                </option>
+
+                <option value="LOW">
+                    Low Priority
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="refreshTasksButton"
+            >
+                ↻ Refresh
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+             TASK TABLE
+        ====================================== -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOUR WORK QUEUE
+                    </span>
+
+                    <h2>All Tasks</h2>
+
+                </div>
+
+                <span id="taskCount">
+                    0 tasks
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="tasks-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Task</th>
+
+                            <th>Lead / School</th>
+
+                            <th>Project</th>
+
+                            <th>Priority</th>
+
+                            <th>Due Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tasksTableBody">
+
+                        <tr>
+
+                            <td colspan="7">
+
+                                <div class="empty-state">
+                                    Loading tasks...
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================
+     ADD TASK MODAL
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="globalTaskModal"
+>
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    NEXT ACTION
+                </span>
+
+                <h2>Add Task</h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeGlobalTaskModal"
+                aria-label="Close task form"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="globalTaskForm">
+
+            <!-- LEAD -->
+
+            <div class="form-section">
+
+                <h3>Task Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+
+                        <label for="globalTaskLead">
+                            Related Lead *
+                        </label>
+
+                        <select
+                            id="globalTaskLead"
+                            required
+                        >
+
+                            <option value="">
+                                Select a lead
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="globalTaskProject">
+                            Related Project
+                        </label>
+
+                        <select id="globalTaskProject">
+
+                            <option value="">
+                                No project selected
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="globalTaskTitle">
+                            Task Title *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="globalTaskTitle"
+                            required
+                            maxlength="200"
+                            placeholder="e.g. Call school owner about website proposal"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="globalTaskPriority">
+                            Priority
+                        </label>
+
+                        <select id="globalTaskPriority">
+
+                            <option value="HIGH">
+                                High
+                            </option>
+
+                            <option value="MEDIUM" selected>
+                                Medium
+                            </option>
+
+                            <option value="LOW">
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="globalTaskDueAt">
+                            Due Date & Time *
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="globalTaskDueAt"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="globalTaskDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="globalTaskDescription"
+                            rows="4"
+                            placeholder="What exactly needs to be done?"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="globalTaskMessage"
+                class="form-message"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelGlobalTaskButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveGlobalTaskButton"
+                >
+                    Save Task
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="../js/tasks.js"
+></script>
+
+</body>
+
+</html>

@@ -2532,3 +2532,252 @@ ACTIVITY RESPONSIVE
     }
     
 }
+/* ========================================
+   GLOBAL TASKS DASHBOARD
+======================================== */
+
+.attention-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+    padding: 24px;
+    border-left: 4px solid var(--primary);
+}
+
+.attention-icon {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(101, 85, 217, 0.10);
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.attention-copy {
+    min-width: 0;
+}
+
+.attention-copy h2 {
+    margin: 4px 0 5px;
+    font-size: 21px;
+    line-height: 1.35;
+}
+
+.attention-copy p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   TASK SUMMARY CARDS
+======================================== */
+
+.task-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.task-summary-grid h2 {
+    margin: 12px 0 5px;
+    font-size: 29px;
+    line-height: 1.2;
+}
+
+.task-summary-grid p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.task-metric-danger {
+    color: #c43d4d;
+}
+
+
+/* ========================================
+   TASK TOOLBAR
+======================================== */
+
+.task-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 170px 170px auto;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.task-toolbar input,
+.task-toolbar select {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* ========================================
+   TASK TABLE
+======================================== */
+
+.tasks-table {
+    min-width: 850px;
+}
+
+.global-task-row {
+    transition: background 0.2s ease;
+}
+
+.global-task-row:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+.global-task-title {
+    display: block;
+    min-width: 140px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.global-task-description {
+    max-width: 260px;
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.task-lead-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.task-lead-link:hover {
+    text-decoration: underline;
+}
+
+.global-task-due {
+    min-width: 145px;
+    font-size: 12px;
+}
+
+.global-task-overdue {
+    background: rgba(220, 53, 69, 0.035);
+}
+
+.global-task-overdue .global-task-due {
+    color: #c43d4d;
+    font-weight: 700;
+}
+
+.global-task-completed {
+    opacity: 0.72;
+}
+
+.global-task-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--background);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.global-status-overdue {
+    background: rgba(220, 53, 69, 0.10);
+    color: #b32637;
+}
+
+.global-status-today {
+    background: rgba(255, 193, 7, 0.15);
+}
+
+.global-status-upcoming {
+    background: rgba(101, 85, 217, 0.10);
+}
+
+.global-status-completed {
+    background: rgba(40, 167, 69, 0.10);
+}
+
+.global-status-closed {
+    background: rgba(108, 117, 125, 0.10);
+}
+
+.task-finished-label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.task-complete-button {
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1050px) {
+    
+    .task-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .task-toolbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .task-toolbar input {
+        grid-column: 1 / -1;
+    }
+    
+}
+
+@media (max-width: 600px) {
+    
+    .attention-card {
+        align-items: flex-start;
+        padding: 18px;
+    }
+    
+    .attention-icon {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        font-size: 19px;
+    }
+    
+    .attention-copy h2 {
+        font-size: 18px;
+    }
+    
+    .task-summary-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+    
+    .task-toolbar {
+        grid-template-columns: 1fr;
+    }
+    
+    .task-toolbar input {
+        grid-column: auto;
+    }
+    
+}
