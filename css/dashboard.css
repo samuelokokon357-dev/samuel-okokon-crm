@@ -1,0 +1,38 @@
+/* Dashboard-only styles. Existing crm.css remains untouched. */
+.metrics-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-bottom:24px; }
+.metric-card { min-width:0; }
+.metric-card strong { overflow-wrap:anywhere; }
+.metric-card small { display:block; margin-top:7px; color:var(--muted); font-size:12px; line-height:1.5; }
+.dashboard-date { margin-top:8px; color:var(--muted); font-size:12px; }
+.dashboard-notice { margin-bottom:20px; padding:13px 16px; border:1px solid #f0d49a; border-radius:10px; background:#fff8e8; color:#80560d; font-size:13px; line-height:1.6; }
+.dashboard-notice.hidden { display:none; }
+.dashboard-text-link { color:var(--primary); font-size:12px; font-weight:700; text-decoration:none; white-space:nowrap; }
+.dashboard-text-link:hover { text-decoration:underline; }
+.dashboard-lead-link { color:inherit; text-decoration:none; overflow-wrap:anywhere; }
+.dashboard-lead-link:hover { color:var(--primary); }
+.priority-task-list,.dashboard-list,.recent-activity-list { display:flex; flex-direction:column; }
+.priority-task-item { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:15px 0; border-bottom:1px solid var(--border); color:inherit; text-decoration:none; }
+.priority-task-item:first-child { padding-top:0; }
+.priority-task-item:last-child { border-bottom:none; padding-bottom:0; }
+.priority-task-item:hover .priority-task-copy strong,.dashboard-project-item:hover .dashboard-list-copy strong,.recent-activity-item:hover .recent-activity-copy strong { color:var(--primary); }
+.priority-task-overdue { border-left:3px solid #c43d4d; padding-left:10px; }
+.priority-task-copy,.dashboard-list-copy,.recent-activity-copy { display:flex; flex-direction:column; gap:5px; min-width:0; }
+.priority-task-copy strong,.dashboard-list-copy strong,.recent-activity-copy strong { font-size:13px; line-height:1.5; overflow-wrap:anywhere; }
+.priority-task-copy span,.dashboard-list-copy span,.recent-activity-copy span { color:var(--muted); font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
+.priority-task-copy small,.dashboard-list-copy small,.recent-activity-copy small { color:var(--muted); font-size:11px; line-height:1.5; overflow-wrap:anywhere; }
+.attention-success { margin-bottom:12px; padding:12px; border-radius:9px; background:rgba(40,167,69,.08); }
+.attention-success strong { font-size:12px; }
+.attention-success p { margin:5px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+.proposal-stat-list { margin-bottom:18px; }
+.dashboard-list-item { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:14px 0; border-bottom:1px solid var(--border); color:inherit; text-decoration:none; }
+.dashboard-list-item:first-child { padding-top:0; }
+.dashboard-list-item:last-child { padding-bottom:0; border-bottom:none; }
+.dashboard-list-value { flex-shrink:0; font-size:12px; text-align:right; overflow-wrap:anywhere; }
+.recent-activity-item { display:grid; grid-template-columns:40px minmax(0,1fr) auto; gap:14px; align-items:start; padding:16px 0; border-bottom:1px solid var(--border); color:inherit; text-decoration:none; }
+.recent-activity-item:first-child { padding-top:0; }
+.recent-activity-item:last-child { padding-bottom:0; border-bottom:none; }
+.recent-activity-icon { display:grid; place-items:center; width:40px; height:40px; border:1px solid var(--border); border-radius:12px; font-size:16px; }
+.recent-activity-item time { color:var(--muted); font-size:11px; text-align:right; white-space:nowrap; }
+@media (max-width:1100px) { .metrics-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:800px) { .dashboard-grid { grid-template-columns:1fr; } }
+@media (max-width:600px) { .metrics-grid { grid-template-columns:1fr; } .priority-task-item,.dashboard-list-item { gap:10px; } .recent-activity-item { grid-template-columns:34px minmax(0,1fr); gap:11px; } .recent-activity-icon { width:34px; height:34px; border-radius:10px; } .recent-activity-item time { grid-column:2; text-align:left; white-space:normal; font-size:10px; } }

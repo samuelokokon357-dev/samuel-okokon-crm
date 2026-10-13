@@ -1,0 +1,22 @@
+DASHBOARD QA REPORT
+
+Result: PASS — static and mocked-data tests.
+
+1. JavaScript syntax: PASS (Node.js `node --check`).
+2. HTML duplicate IDs: PASS (none found).
+3. JS literal element references: PASS (no missing element IDs).
+4. Script path: PASS (`js/dashboard.js` exists in package).
+5. Dashboard stylesheet: PASS (`css/dashboard.css` exists in package; link added in index.html).
+6. Mocked calculation/runtime checks: PASS.
+   - Pipeline value: ₦500,000 for representative records.
+   - Won deals: 1 across WON/downstream stages.
+   - Sent/viewed proposals: 1; draft excluded.
+   - Collected: ₦700,000 and $100, shown separately.
+   - Outstanding: ₦700,000 and $0 for accepted proposals in representative sample.
+   - Active project count excludes ON_HOLD.
+   - Due/overdue task display renders.
+   - Proposal attention list renders.
+   - Project delivery list renders.
+   - Recent activities and recent leads render.
+
+Not performed: live Supabase authentication/RLS/query execution, live records validation, GitHub upload, or Vercel deployment. Those require access to the user's repository and authenticated project environment.
