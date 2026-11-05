@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17152f">
+  <title>Website Intakes | Samuel Okokon CRM</title>
+  <link rel="stylesheet" href="../css/crm.css">
+  <link rel="stylesheet" href="../css/intakes.css">
+</head>
+<body>
+<div class="crm-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><div class="brand-mark">SO</div><div><h2>Samuel Okokon</h2><span>CRM</span></div></div>
+    <nav class="sidebar-nav">
+      <a href="../index.html" class="nav-link"><span>⌂</span>Dashboard</a>
+      <a href="leads.html" class="nav-link"><span>◉</span>Leads</a>
+      <a href="intakes.html" class="nav-link active"><span>▧</span>Website Intakes</a>
+      <a href="projects.html" class="nav-link"><span>▣</span>Projects</a>
+      <a href="proposals.html" class="nav-link"><span>◇</span>Proposals</a>
+      <a href="payments.html" class="nav-link"><span>₦</span>Payments</a>
+      <a href="tasks.html" class="nav-link"><span>✓</span>Tasks</a>
+      <a href="clients.html" class="nav-link"><span>♧</span>Clients</a>
+      <a href="onboarding.html" class="nav-link"><span>▤</span>Onboarding</a>
+    </nav>
+    <div class="sidebar-bottom"><button id="logoutButton" type="button">Sign Out</button></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="dashboard-header">
+      <div>
+        <span class="eyebrow">PORTFOLIO ENQUIRIES</span>
+        <h1>Website Intakes</h1>
+        <p>Review project briefs submitted through your portfolio website.</p>
+      </div>
+      <button class="secondary-button" id="refreshIntakesButton" type="button">↻ Refresh</button>
+    </header>
+
+    <div id="intakesNotice" class="intakes-notice" role="status" aria-live="polite" hidden></div>
+
+    <section class="intakes-metrics">
+      <article class="dashboard-card"><span class="eyebrow">NEW SUBMISSIONS</span><strong id="newIntakeCount">—</strong><small>Ready for your review</small></article>
+      <article class="dashboard-card"><span class="eyebrow">DRAFTS</span><strong id="draftIntakeCount">—</strong><small>Visitors who have not submitted</small></article>
+      <article class="dashboard-card"><span class="eyebrow">QUALIFIED</span><strong id="qualifiedIntakeCount">—</strong><small>Reviewed and ready to promote</small></article>
+      <article class="dashboard-card"><span class="eyebrow">CONVERTED</span><strong id="convertedIntakeCount">—</strong><small>Already linked to a CRM lead</small></article>
+    </section>
+
+    <section class="dashboard-card intakes-toolbar">
+      <input type="search" id="intakeSearch" placeholder="Search reference, school, contact or email…" aria-label="Search website intakes">
+      <select id="intakeStatusFilter" aria-label="Filter by status">
+        <option value="ALL">All statuses</option><option value="NEW">New</option><option value="DRAFT">Draft</option><option value="REVIEWED">Reviewed</option><option value="QUALIFIED">Qualified</option><option value="CONVERTED">Converted</option><option value="ARCHIVED">Archived</option>
+      </select>
+    </section>
+
+    <section class="dashboard-card">
+      <div class="card-header"><div><span class="eyebrow">INCOMING PROJECT BRIEFS</span><h2>Portfolio Enquiries</h2></div><span id="intakeResultCount" class="intake-result-count">Loading…</span></div>
+      <div class="table-wrapper">
+        <table class="intakes-table">
+          <thead><tr><th>Reference</th><th>Organisation</th><th>Contact</th><th>Project</th><th>Status</th><th>Received</th><th></th></tr></thead>
+          <tbody id="intakesTableBody"><tr><td colspan="7"><div class="empty-state">Loading website intakes…</div></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="intake-modal" id="intakeModal" aria-hidden="true">
+  <div class="intake-modal-backdrop" data-close-intake></div>
+  <section class="intake-modal-card" role="dialog" aria-modal="true" aria-labelledby="intakeModalTitle">
+    <header class="intake-modal-header"><div><span class="eyebrow">PROJECT BRIEF</span><h2 id="intakeModalTitle">Website Intake</h2><p id="intakeModalSubtitle"></p></div><button type="button" class="intake-modal-close" id="closeIntakeModal" aria-label="Close">×</button></header>
+    <div id="intakeDetailContent" class="intake-detail-content"></div>
+    <footer class="intake-modal-actions" id="intakeModalActions"></footer>
+  </section>
+</div>
+<script type="module" src="../js/intakes.js"></script>
+</body>
+</html>

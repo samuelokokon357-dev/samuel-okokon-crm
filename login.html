@@ -106,61 +106,118 @@
 
     <script type="module">
 
-        import { supabase } from "./js/supabase.js";
+    import { supabase } from "./js/supabase.js";
 
-        const loginForm =
-            document.getElementById("loginForm");
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+    const loginMessage = document.getElementById("loginMessage");
 
-        const loginButton =
-            document.getElementById("loginButton");
+    let isSubmitting = false;
+    let redirecting = false;
 
-        const loginMessage =
-            document.getElementById("loginMessage");
+    const SIGN_IN_TIMEOUT_MS = 15000;
 
+    loginForm.addEventListener("submit", async (event) => {
 
-        loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-            event.preventDefault();
+        // Prevent duplicate submissions.
+        if (isSubmitting) return;
 
-            const email =
-                document.getElementById("email").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-            const password =
-                document.getElementById("password").value;
+        isSubmitting = true;
 
+        loginButton.disabled = true;
+        loginButton.textContent = "Signing In...";
+        loginMessage.textContent = "";
 
-            loginButton.disabled = true;
+        let timeoutId;
 
-            loginButton.textContent = "Signing In...";
+        try {
 
-            loginMessage.textContent = "";
+            console.log("[CRM Auth] Starting sign-in request.");
 
+            const signInRequest = supabase.auth.signInWithPassword({
+                email,
+                password
+            });
 
-            const { error } =
-                await supabase.auth.signInWithPassword({
-                    email,
-                    password
-                });
+            // Prevent the interface from waiting forever.
+            const timeoutRequest = new Promise((resolve, reject) => {
 
+                timeoutId = window.setTimeout(() => {
+
+                    const error = new Error(
+                        "Sign-in timed out after 15 seconds."
+                    );
+
+                    error.name = "SignInTimeoutError";
+
+                    reject(error);
+
+                }, SIGN_IN_TIMEOUT_MS);
+
+            });
+
+            const { data, error } = await Promise.race([
+                signInRequest,
+                timeoutRequest
+            ]);
 
             if (error) {
-
-                loginMessage.textContent =
-                    error.message;
-
-                loginButton.disabled = false;
-
-                loginButton.textContent = "Sign In";
-
-                return;
+                throw error;
             }
 
+            if (!data || !data.session) {
+                throw new Error(
+                    "Authentication returned without an active session. Please try again."
+                );
+            }
 
-            window.location.href = "index.html";
+            console.log("[CRM Auth] Authentication succeeded.");
 
-        });
+            redirecting = true;
 
-    </script>
+            loginButton.textContent = "Opening Dashboard...";
+
+            window.location.replace("index.html");
+
+        } catch (error) {
+
+            console.error("[CRM Auth] Sign-in failed:", error);
+
+            if (error.name === "SignInTimeoutError") {
+
+                loginMessage.textContent =
+                    "Sign-in did not finish within 15 seconds. Refresh this page and try again. If the problem continues, we need to investigate the browser connection.";
+
+            } else {
+
+                loginMessage.textContent =
+                    error.message || "Sign-in failed. Please try again.";
+
+            }
+
+        } finally {
+
+            window.clearTimeout(timeoutId);
+
+            if (!redirecting) {
+
+                isSubmitting = false;
+
+                loginButton.disabled = false;
+                loginButton.textContent = "Sign In";
+
+            }
+
+        }
+
+    });
+
+</script>
 
 </body>
 </html>

@@ -1,0 +1,38 @@
+SAMUEL OKOKON CRM — WEBSITE INTAKES UPGRADE
+
+WHAT THIS UPGRADE ADDS
+- A Website Intakes inbox in the CRM sidebar.
+- Search and status filters for portfolio enquiries.
+- Full brief review, including contact-consent-aware contact details.
+- Actions to mark submissions Reviewed or Qualified.
+- Promotion into the existing Leads table through one atomic database function.
+- Duplicate protection: promotion reuses a matching existing lead with the same email or WhatsApp/phone number.
+- Repeated clicks/network retries do not create another lead for the same intake.
+
+FILES ADDED
+- pages/intakes.html
+- js/intakes.js
+- css/intakes.css
+- supabase/project_intakes_crm_bridge.sql
+
+FILES UPDATED
+- Sidebar navigation in the dashboard and existing CRM pages now includes Website Intakes.
+
+INSTALLATION
+1. Back up your current CRM folder.
+2. Extract this ZIP over a copy of the current CRM folder, preserving the folder structure.
+3. In the SAME Supabase project used by the portfolio and CRM, run the V18 website migration first: supabase/project_intakes.sql from the V18 portfolio package.
+4. After that succeeds, run this CRM migration: supabase/project_intakes_crm_bridge.sql.
+5. Refresh the CRM and sign in. Open Website Intakes from the sidebar.
+6. Test using a clearly labelled test submission from the portfolio. Do not use a real prospect's information for testing.
+7. Open the test intake, mark it Reviewed or Qualified, then Promote to Leads. Confirm the resulting lead appears in Leads and the intake displays its linked lead.
+
+IMPORTANT NOTES
+- This upgrade does not automatically import old leads, change existing lead records, or touch the existing payments table / crm_payments table.
+- A draft without contact consent cannot be promoted. Contact fields should remain withheld until the visitor consents.
+- Promotion is not a payment or project creation. It creates or links a CRM lead only; continue using the existing proposal, payment, project and onboarding workflow after qualification.
+- The SQL uses the lead fields already used by the CRM's Add Lead form: first_name, last_name, business_name, business_type, email, phone, whatsapp, source, source_details, stage, estimated_value, notes and owner_id.
+- The package has been syntax-checked locally, but it has NOT been connected to or tested against your live Supabase database. Run the migrations and do the test submission before treating the bridge as live.
+
+ROLLBACK
+If the module must be disabled, remove the Website Intakes navigation links and pages/intakes.html, js/intakes.js, css/intakes.css. Do not drop the database table or function while you still need submitted intake records.
